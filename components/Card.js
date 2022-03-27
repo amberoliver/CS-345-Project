@@ -1,5 +1,5 @@
 import { View } from "react-native";
-export function Card({ children }) {
+export function Card({ children ,style}) {
   return (
     <View
       style={{
@@ -12,6 +12,7 @@ export function Card({ children }) {
         shadowOffset: { width: 2, height: 2 },
         borderRadius: 16,
         borderWidth: 1,
+        ...style
       }}
     >
       {children}
