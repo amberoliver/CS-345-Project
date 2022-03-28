@@ -1,7 +1,9 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import { Card } from "./components/Card";
-import { RecentTransactionsHome } from "./components/RecentTransactionHome";
+import { Category } from "./components/Category";
+import { Chart } from "./components/Chart";
+import { RecentTransactionHome } from "./components/RecentTransactionHome";
 
 export default function App() {
   return (
@@ -9,6 +11,9 @@ export default function App() {
       <Text>Open up App.js to start working on your app!</Text>
       <StatusBar style="auto" />
       <Card></Card>
+      <Category></Category>
+      <Chart></Chart>
+      <RecentTransactionHome></RecentTransactionHome>
     </View>
   );
 }
