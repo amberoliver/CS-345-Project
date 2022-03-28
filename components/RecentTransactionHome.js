@@ -14,7 +14,7 @@ export function RecentTransactionHome() {
 
 export function TransactionData({category, item, amount, date, time}) {
     return(
-        <View style = {{display: "flex", flexDirection: "row", width: "50%", justifyContent: "space-between"}}>
+        <View style = {{display: "flex", flexDirection: "row", width: "50%", justifyContent: "space-"}}>
             <Text>{category}</Text>
             <Text>{amount}</Text>
             <Text>{item}</Text>
