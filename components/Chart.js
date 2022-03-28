@@ -8,10 +8,10 @@ export function Chart() {
       <Text>$300</Text>
       <Text>Remaining Balance</Text>
       <View style = {{display: "flex", flexDirection: "row", width: 200, flexWrap: "wrap", justifyConten: "space-between"}}>
-      <SpecificCategory name = "Food" color = "red" amount = "$20"/>
-      <SpecificCategory name = "Rent" color = "blue" amount = "$10"/>
-      <SpecificCategory name = "Environment" color = "green" amount = "$5"/>
-      <SpecificCategory name = "Transporation" color = "purple" amount = "$16"/>
+      <SpecificCategory name = "Food" color = "#6B7AFF" amount = "$20"/>
+      <SpecificCategory name = "Rent" color = "#FF6BF0" amount = "$10"/>
+      <SpecificCategory name = "Entertainment" color = "#6BFF8C" amount = "$5"/>
+      <SpecificCategory name = "Transporation" color = "#FF6B6B" amount = "$16"/>
       </View>
     </Card>
   );
