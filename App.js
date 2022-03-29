@@ -1,7 +1,7 @@
 // In App.js in a new project
 
 import * as React from "react";
-import { View, Text } from "react-native";
+import { View, Text, Pressable } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -15,7 +15,12 @@ import Settings from "./pages/Settings";
 const Tab = createBottomTabNavigator();
 function Tabs() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{
+        tabBarShowLabel: false,
+        tabBarActiveTintColor: "#6B7AFF",
+      }}
+    >
       <Tab.Screen
         name="Home"
         component={Home}
@@ -34,7 +39,35 @@ function Tabs() {
         name="Add"
         component={TransactionEdit}
         options={{
-          tabBarIcon: (props) => <Feather name="plus" {...props} />,
+          tabBarButton: (props) => (
+            <Pressable
+              {...props}
+              style={[
+                props.style,
+                {
+                  justifyContent: "center",
+                  alignItems: "center",
+                },
+              ]}
+            >
+              <View
+                style={{
+                  shadowColor: "black",
+                  shadowOpacity: 0.1,
+                  shadowRadius: 2,
+                  shadowOffset: { width: 2, height: 2 },
+                  height: "80%",
+                  aspectRatio: 1,
+                  backgroundColor: "#6B7AFF",
+                  justifyContent: "center",
+                  borderRadius: 1000,
+                  alignItems: "center",
+                }}
+              >
+                <Feather name="plus" size={28} color="white" />
+              </View>
+            </Pressable>
+          ),
         }}
       />
       <Tab.Screen
