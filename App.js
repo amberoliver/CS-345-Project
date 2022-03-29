@@ -7,13 +7,10 @@ import {
   FlatList,
   ScrollView,
 } from "react-native";
-import { FlatGrid } from "react-native-super-grid";
-import { Card } from "./components/Card";
+import Card from "./components/Card";
 import Category from "./components/Category";
-import CategoryTag from "./components/CategoryTag";
-import { Chart } from "./components/Chart";
-import { Item, Layout } from "./components/Layout";
-import { RecentTransactionHome } from "./components/RecentTransactionHome";
+import Chart from "./components/Chart";
+import Button from "./components/Button";
 import Transaction from "./components/Transaction";
 import SaveAreaViewAndriod from "./utils/SaveAreaViewAndriod";
 
@@ -68,6 +65,10 @@ export default function App() {
             <Transaction {...data} key={index} />
           ))}
         </Card>
+        <Button
+          title="Get Help"
+          onPress={() => console.log("button pressed")}
+        />
       </ScrollView>
     </SafeAreaView>
   );

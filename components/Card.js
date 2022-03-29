@@ -1,5 +1,5 @@
 import { View, Pressable } from "react-native";
-export function Card({
+export default function Card({
   children,
   color,
   onPress,

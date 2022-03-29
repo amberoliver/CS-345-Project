@@ -1,11 +1,11 @@
 import { Text } from "react-native";
 import { View } from "react-native";
 import { FlatGrid } from "react-native-super-grid";
-import { Card } from "./Card";
+import Card from "./Card";
 import CategoryTag from "./CategoryTag";
 
 import Svg, { Path } from "react-native-svg";
-export function Chart({ categories }) {
+export default function Chart({ categories }) {
   const total = categories.reduce((prev, curr) => {
     return prev + curr.total;
   }, 0);
@@ -42,10 +42,8 @@ function Circle({ categories }) {
     const total = categories.reduce((prev, curr) => {
       return prev + curr.total;
     }, 0);
-    console.log(total);
     for (let cat of categories) {
       const { remaining, color } = cat;
-      console.log(total);
       let percent = remaining / total;
       sum += percent;
       result.push({ percent: sum, color });

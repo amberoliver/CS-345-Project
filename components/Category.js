@@ -1,7 +1,7 @@
 import { Text } from "react-native";
 import { View } from "react-native";
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
-import { Card } from "./Card";
+import Card from "./Card";
 
 export default function Category({ color, remaining, total, name, onPress }) {
   return (
