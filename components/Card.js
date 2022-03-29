@@ -1,21 +1,52 @@
-import { View } from "react-native";
-export function Card({ children ,style}) {
+import { View, Pressable } from "react-native";
+export function Card({
+  children,
+  color,
+  onPress,
+  contentStyle,
+  margin,
+  noPad,
+}) {
   return (
-    <View
+    <Pressable
       style={{
         shadowColor: "black",
-        shadowOpacity: 0.2,
+        shadowOpacity: 0.1,
         backgroundColor: "white",
         borderColor: "#DEDEDE",
-        padding: 15,
         shadowRadius: 2,
         shadowOffset: { width: 2, height: 2 },
-        borderRadius: 16,
+        borderRadius: 8,
         borderWidth: 1,
-        ...style
+        flexDirection: "row",
+        margin: (() => {
+          if (margin) return 8;
+        })(),
       }}
+      onPress={onPress}
     >
-      {children}
-    </View>
+      <View
+        style={{
+          overflow: "hidden",
+          width: "100%",
+          height: "100%",
+          justifyContent: "center",
+          flexDirection: "row",
+          overflow: "hidden",
+          borderRadius: 8,
+        }}
+      >
+        {color && <View style={{ backgroundColor: color, width: 8 }}></View>}
+        <View
+          style={{
+            padding: noPad ? 0 : 15,
+            flex: 1,
+            ...contentStyle,
+          }}
+        >
+          {children}
+        </View>
+      </View>
+    </Pressable>
   );
 }
