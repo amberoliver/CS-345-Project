@@ -27,8 +27,8 @@ export function Chart({ categories }) {
         </View>
       </View>
       <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
-        {categories.map((item) => (
-          <CategoryTag {...item} />
+        {categories.map((item, index) => (
+          <CategoryTag {...item} key={index} />
         ))}
       </View>
     </Card>

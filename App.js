@@ -15,6 +15,8 @@ import { Chart } from "./components/Chart";
 import { Item, Layout } from "./components/Layout";
 import { RecentTransactionHome } from "./components/RecentTransactionHome";
 import Transaction from "./components/Transaction";
+import SaveAreaViewAndriod from "./utils/SaveAreaViewAndriod";
+
 const mockCategories = [
   { name: "Food", remaining: 200, total: 300, color: "#6B7AFF" },
   { name: "Rent", remaining: 400, total: 400, color: "#FF6BF0" },
@@ -38,7 +40,9 @@ const mockTransactions = [
 ];
 export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView
+      style={[styles.container, SaveAreaViewAndriod.AndroidSafeArea]}
+    >
       <ScrollView>
         <StatusBar style="auto" />
         <Chart remaining={300} categories={mockCategories} />
