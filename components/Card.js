@@ -24,6 +24,7 @@ export default function Card({
         })(),
       }}
       onPress={onPress}
+      nativeID={"card"}
     >
       <View
         style={{

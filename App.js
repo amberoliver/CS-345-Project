@@ -1,84 +1,74 @@
-import { StatusBar } from "expo-status-bar";
-import {
-  StyleSheet,
-  Text,
-  View,
-  SafeAreaView,
-  FlatList,
-  ScrollView,
-} from "react-native";
-import Card from "./components/Card";
-import Category from "./components/Category";
-import Chart from "./components/Chart";
-import Button from "./components/Button";
-import Transaction from "./components/Transaction";
-import SaveAreaViewAndriod from "./utils/SaveAreaViewAndriod";
+// In App.js in a new project
 
-const mockCategories = [
-  { name: "Food", remaining: 200, total: 300, color: "#6B7AFF" },
-  { name: "Rent", remaining: 400, total: 400, color: "#FF6BF0" },
-  { name: "Entertainment", remaining: 50, total: 50, color: "#6BFF8C" },
-  { name: "Transportation", remaining: 40, total: 70, color: "#FF6B6B" },
-];
+import * as React from "react";
+import { View, Text } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Categories from "./pages/Categories";
+import Home from "./pages/Home";
+import TransactionEdit from "./pages/TransactionEdit";
+import Transactions from "./pages/Transactions";
+import { Feather } from "@expo/vector-icons";
+import Settings from "./pages/Settings";
 
-const mockTransactions = [
-  {
-    name: "French Fries",
-    amount: -400,
-    date: Date.parse("August 5, 2020"),
-    category: { name: "Food", color: "#6B7AFF" },
-  },
-  {
-    name: "Movie Ticket",
-    amount: -10,
-    date: Date.parse("Mar 2, 2019"),
-    category: { name: "Entertainment", color: "#6BFF8C" },
-  },
-];
-export default function App() {
+const Tab = createBottomTabNavigator();
+function Tabs() {
   return (
-    <SafeAreaView
-      style={[styles.container, SaveAreaViewAndriod.AndroidSafeArea]}
-    >
-      <ScrollView>
-        <StatusBar style="auto" />
-        <Chart remaining={300} categories={mockCategories} />
-        <View
-          style={{
-            width: "100%",
-            flexDirection: "row",
-            flexWrap: "wrap",
-            paddingLeft: 8,
-          }}
-        >
-          {mockCategories.map((cat, index) => (
-            <View
-              style={{ width: "50%", paddingEnd: 8, paddingBottom: 8 }}
-              key={index}
-            >
-              <Category {...cat} />
-            </View>
-          ))}
-        </View>
-        <Card margin noPad>
-          {mockTransactions.map((data, index) => (
-            <Transaction {...data} key={index} />
-          ))}
-        </Card>
-        <Button
-          title="Get Help"
-          onPress={() => console.log("button pressed")}
-        />
-      </ScrollView>
-    </SafeAreaView>
+    <Tab.Navigator>
+      <Tab.Screen
+        name="Home"
+        component={Home}
+        options={{
+          tabBarIcon: (props) => <Feather name="home" {...props} />,
+        }}
+      />
+      <Tab.Screen
+        name="Categories"
+        component={Categories}
+        options={{
+          tabBarIcon: (props) => <Feather name="pie-chart" {...props} />,
+        }}
+      />
+      <Tab.Screen
+        name="Add"
+        component={TransactionEdit}
+        options={{
+          tabBarIcon: (props) => <Feather name="plus" {...props} />,
+        }}
+      />
+      <Tab.Screen
+        name="Transactions"
+        component={Transactions}
+        options={{
+          tabBarIcon: (props) => <Feather name="file-text" {...props} />,
+        }}
+      />
+      <Tab.Screen
+        name="Settings"
+        component={Settings}
+        options={{
+          tabBarIcon: (props) => <Feather name="settings" {...props} />,
+        }}
+      />
+    </Tab.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#EFF1F5",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+const Stack = createNativeStackNavigator();
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Tabs"
+          component={Tabs}
+          options={{ headerShown: false }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+export default App;
