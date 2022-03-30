@@ -24,7 +24,6 @@ export default function Transactions() {
           <Transaction {...data} key={index} />
         ))}
       </Card>
-      <Button title="Get Help" onPress={() => console.log("button pressed")} />
     </View>
   );
 }

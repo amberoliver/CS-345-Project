@@ -6,7 +6,7 @@ import { View, Text, Pressable } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Categories from "./pages/Categories";
+import Categories, { AddCategory } from "./pages/Categories";
 import Home from "./pages/Home";
 import TransactionEdit from "./pages/TransactionEdit";
 import Transactions from "./pages/Transactions";
@@ -38,6 +38,7 @@ function Tabs() {
         <Tab.Screen
           name="Categories"
           component={Categories}
+          Component={AddCategory}
           options={{
             tabBarIcon: (props) => <Feather name="pie-chart" {...props} />,
           }}

@@ -16,26 +16,3 @@ export default function Category({ color, remaining, total, name, onPress }) {
   );
 }
 
-// export function SpecificCategory({ name, color, amount }) {
-//   return (
-//     <View
-//       style={{
-//         display: "flex",
-//         flexDirection: "row",
-//         width: "100%",
-//         justifyContent: "space-between",
-//       }}
-//     >
-//       <View
-//         style={{
-//           width: 10,
-//           height: 50,
-//           borderRadius: 10,
-//           backgroundColor: color,
-//         }}
-//       ></View>
-//       <Text>{name}</Text>
-//       <Text>{amount}</Text>
-//     </View>
-//   );
-// }
