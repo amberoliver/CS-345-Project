@@ -1,7 +1,9 @@
 import { View } from "react-native";
 
-export default function Graphs() {
+export default function Graph() {
     return (
-<View></View>
+<View>
+    
+</View>
     );
 }
