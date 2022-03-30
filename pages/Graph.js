@@ -17,40 +17,33 @@ const chartConfig = {
 
 const data = [
     {
-      name: "Seoul",
+      name: "Food",
       budget: 21500000,
       color: "rgba(131, 167, 234, 1)",
       legendFontColor: "#7F7F7F",
       legendFontSize: 15
     },
     {
-      name: "Toronto",
+      name: "Rent",
       budget: 2800000,
       color: "#F00",
       legendFontColor: "#7F7F7F",
       legendFontSize: 15
     },
     {
-      name: "Beijing",
+      name: "Entertainment",
       budget: 527612,
       color: "red",
       legendFontColor: "#7F7F7F",
       legendFontSize: 15
     },
     {
-      name: "New York",
+      name: "Transportation",
       budget: 8538000,
       color: "#ffffff",
       legendFontColor: "#7F7F7F",
       legendFontSize: 15
     },
-    {
-      name: "Moscow",
-      budget: 11920000,
-      color: "rgb(0, 0, 255)",
-      legendFontColor: "#7F7F7F",
-      legendFontSize: 15
-    }
   ];
 
 export default function Graph() {
