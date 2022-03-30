@@ -7,15 +7,7 @@ const nameTitle = "Name:";
 const emailTitle = "Email:";
 const phoneTitle = "Phone:";
 
-const mockSettings = [
-  {
-    name: "Amber",
-    email: "amberoliver@gmail.com",
-    phone: "808.681.9113",
-  },
-];
-
-export default function Settings(name, email, phone) {
+export default function Settings({name, email, phone}) {
   return (
     <View>
       <Card>
@@ -23,18 +15,27 @@ export default function Settings(name, email, phone) {
       <Text style={{ fontSize: 25, flexDirection: "row", textAlign: "left" }}>
             {name}
           </Text>
+          <View style = {{fontSize: 15, flexDirection: "row-reverse", display: "flex"}}>
+          <Button title="Edit" onPress={() => console.log("button pressed")} />
+          </View>
       </Card>
       <Card>
       <Text style={{ fontSize: 20, fontWeight: "bold" }}>{emailTitle}</Text>
       <Text style={{ fontSize: 25, flexDirection: "row", textAlign: "left" }}>
             {email}
           </Text>
+          <View style = {{fontSize: 15, flexDirection: "row-reverse", display: "flex"}}>
+          <Button title="Edit" onPress={() => console.log("button pressed")} />
+          </View>
       </Card>
       <Card>
       <Text style={{ fontSize: 20, fontWeight: "bold" }}>{phoneTitle}</Text>
       <Text style={{ fontSize: 25, flexDirection: "row", textAlign: "left" }}>
             {phone}
           </Text>
+          <View style = {{fontSize: 15, flexDirection: "row-reverse", display: "flex"}}>
+          <Button title="Edit" onPress={() => console.log("button pressed")} />
+          </View>
       </Card>
       <Button title="Get Help" onPress={() => console.log("button pressed")} />
       <Button title="Logout" onPress={() => console.log("button pressed")} />
