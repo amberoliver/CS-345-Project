@@ -7,39 +7,63 @@ const nameTitle = "Name:";
 const emailTitle = "Email:";
 const phoneTitle = "Phone:";
 
-export default function Settings({name, email, phone}) {
+export default function Settings() {
+  const name = "Amber";
+  const email = "amberoliver@gmail.com";
+  const phone = "(252) 355-9323";
   return (
     <View>
       <Card>
-      <Text style={{ fontSize: 20, fontWeight: "bold" }}>{nameTitle}</Text>
-      <Text style={{ fontSize: 25, flexDirection: "row", textAlign: "left" }}>
-            {name}
-          </Text>
-          <View style = {{fontSize: 15, flexDirection: "row-reverse", display: "flex"}}>
+        <Text style={{ fontSize: 20, fontWeight: "bold" }}>{nameTitle}</Text>
+        <Text style={{ fontSize: 25, flexDirection: "row", textAlign: "left" }}>
+          {name}
+        </Text>
+        <View
+          style={{
+            fontSize: 15,
+            flexDirection: "row-reverse",
+            display: "flex",
+          }}
+        >
           <Button title="Edit" onPress={() => console.log("button pressed")} />
-          </View>
+        </View>
       </Card>
       <Card>
-      <Text style={{ fontSize: 20, fontWeight: "bold" }}>{emailTitle}</Text>
-      <Text style={{ fontSize: 25, flexDirection: "row", textAlign: "left" }}>
-            {email}
-          </Text>
-          <View style = {{fontSize: 15, flexDirection: "row-reverse", display: "flex"}}>
+        <Text style={{ fontSize: 20, fontWeight: "bold" }}>{emailTitle}</Text>
+        <Text style={{ fontSize: 25, flexDirection: "row", textAlign: "left" }}>
+          {email}
+        </Text>
+        <View
+          style={{
+            fontSize: 15,
+            flexDirection: "row-reverse",
+            display: "flex",
+          }}
+        >
           <Button title="Edit" onPress={() => console.log("button pressed")} />
-          </View>
+        </View>
       </Card>
       <Card>
-      <Text style={{ fontSize: 20, fontWeight: "bold" }}>{phoneTitle}</Text>
-      <Text style={{ fontSize: 25, flexDirection: "row", textAlign: "left" }}>
-            {phone}
-          </Text>
-          <View style = {{fontSize: 15, flexDirection: "row-reverse", display: "flex"}}>
+        <Text style={{ fontSize: 20, fontWeight: "bold" }}>{phoneTitle}</Text>
+        <Text style={{ fontSize: 25, flexDirection: "row", textAlign: "left" }}>
+          {phone}
+        </Text>
+        <View
+          style={{
+            fontSize: 15,
+            flexDirection: "row-reverse",
+            display: "flex",
+          }}
+        >
           <Button title="Edit" onPress={() => console.log("button pressed")} />
-          </View>
+        </View>
       </Card>
       <Button title="Get Help" onPress={() => console.log("button pressed")} />
       <Button title="Logout" onPress={() => console.log("button pressed")} />
-      <Button title="Delete Account" onPress={() => console.log("button pressed")} />
+      <Button
+        title="Delete Account"
+        onPress={() => console.log("button pressed")}
+      />
     </View>
   );
 }
