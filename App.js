@@ -15,6 +15,7 @@ import Settings from "./pages/Settings";
 import BottomSheet, { BottomSheetBackdrop } from "@gorhom/bottom-sheet";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import Graphs from "./pages/Graphs";
+import { NativeBaseProvider } from "native-base";
 
 const Tab = createBottomTabNavigator();
 function Tabs() {
@@ -110,37 +111,39 @@ function App() {
   // variables
   const snapPoints = useMemo(() => ["50%", "80%"], []);
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <MyContext.Provider value={{ bottomSheetRef }}>
-        <View style={{ flex: 1 }}>
-          <NavigationContainer>
-            <Stack.Navigator>
-              <Stack.Screen
-                name="Tabs"
-                component={Tabs}
-                options={{ headerShown: false }}
-              />
-            </Stack.Navigator>
-          </NavigationContainer>
-          <BottomSheet
-            style={{ zIndex: 1000, elevation: 1000 }}
-            snapPoints={snapPoints}
-            ref={bottomSheetRef}
-            index={-1}
-            enablePanDownToClose
-            backdropComponent={(props) => (
-              <BottomSheetBackdrop
-                appearsOnIndex={0}
-                disappearsOnIndex={-1}
-                {...props}
-              />
-            )}
-          >
-            <TransactionEdit />
-          </BottomSheet>
-        </View>
-      </MyContext.Provider>
-    </GestureHandlerRootView>
+    <NativeBaseProvider>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <MyContext.Provider value={{ bottomSheetRef }}>
+          <View style={{ flex: 1 }}>
+            <NavigationContainer>
+              <Stack.Navigator>
+                <Stack.Screen
+                  name="Tabs"
+                  component={Tabs}
+                  options={{ headerShown: false }}
+                />
+              </Stack.Navigator>
+            </NavigationContainer>
+            <BottomSheet
+              style={{ zIndex: 1000, elevation: 1000 }}
+              snapPoints={snapPoints}
+              ref={bottomSheetRef}
+              index={-1}
+              enablePanDownToClose
+              backdropComponent={(props) => (
+                <BottomSheetBackdrop
+                  appearsOnIndex={0}
+                  disappearsOnIndex={-1}
+                  {...props}
+                />
+              )}
+            >
+              <TransactionEdit />
+            </BottomSheet>
+          </View>
+        </MyContext.Provider>
+      </GestureHandlerRootView>
+    </NativeBaseProvider>
   );
 }
 
