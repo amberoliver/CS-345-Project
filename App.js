@@ -14,7 +14,7 @@ import { Feather } from "@expo/vector-icons";
 import Settings from "./pages/Settings";
 import BottomSheet, { BottomSheetBackdrop } from "@gorhom/bottom-sheet";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import Graph from "./pages/Graph";
+import Graphs from "./pages/Graphs";
 
 const Tab = createBottomTabNavigator();
 function Tabs() {
@@ -35,8 +35,8 @@ function Tabs() {
             }}
           />
           <Tab.Screen
-            name="Graph"
-            component={Graph}
+            name="Graphs"
+            component={Graphs}
             options={{
               tabBarIcon: (props) => <Feather name="pie-chart" {...props} />,
             }}
