@@ -2,6 +2,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import { PieChart } from "react-native-chart-kit";
 import { Dimensions, View } from "react-native";
 import Card from "../components/Card";
+import { Text } from "react-native-svg";
 
 const chartConfig = {
     backgroundGradientFrom: "#1E2923",
@@ -98,17 +99,20 @@ const food = [
 export function Graph() {
     return (
       <Card>
+        <Text>
+          Food
+        </Text>
     <PieChart 
-  data={food}
-  width={screenWidth}
-  height={150}
-  chartConfig={chartConfig}
-  accessor={"budget"}
-  backgroundColor={"transparent"}
-  paddingLeft={"15"}
-  center={[5, 5]}
-  absolute
-/>
+      data={food}
+      width={screenWidth}
+      height={150}
+      chartConfig={chartConfig}
+      accessor={"budget"}
+      backgroundColor={"transparent"}
+      paddingLeft={"15"}
+      center={[5, 5]}
+      absolute
+    />
 </Card>
     );
 }
@@ -116,7 +120,7 @@ export function Graph() {
 export function Graph1() {
     return(
       <Card>
-        <PieChart
+      <PieChart
         data = {rent}
         width={screenWidth}
         height={150}
@@ -134,7 +138,7 @@ export function Graph1() {
 export function Graph2() {
     return(
       <Card>
-        <PieChart
+      <PieChart
         data = {entertainment}
         width={screenWidth}
         height={150}
@@ -152,7 +156,7 @@ export function Graph2() {
 export function Graph3() {
     return(
       <Card>
-        <PieChart
+      <PieChart
         data = {Transportation}
         width={screenWidth}
         height={150}
