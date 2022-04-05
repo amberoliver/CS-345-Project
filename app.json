@@ -17,6 +17,7 @@
     "ios": {
       "bundleIdentifier": "cs345project",
       "supportsTablet": true
+      
     },
     "android": {
       "package": "cs345project",
