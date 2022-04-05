@@ -4,7 +4,7 @@ export default function Button({ onPress, title }) {
     <Pressable
       onPress={onPress}
       style={{
-        backgroundColor: "#6B7AFF",
+        backgroundColor: "blue",
         paddingHorizontal: 15,
         paddingVertical: 10,
         borderRadius: 8,
