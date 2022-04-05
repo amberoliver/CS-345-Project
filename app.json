@@ -15,12 +15,10 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "bundleIdentifier": "cs345project",
       "supportsTablet": true
-      
+
     },
     "android": {
-      "package": "cs345project",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
