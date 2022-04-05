@@ -22,7 +22,7 @@ export default function Tabs() {
         name="Budget"
         component={BudgetScreen}
         options={{
-          tabBarIcon: (props) => <Entypo name="pie-chart" {...props} />,
+          tabBarIcon: (props) => <Entypo name="menu" {...props} />,
         }}
       />
       <Tab.Screen
@@ -36,14 +36,14 @@ export default function Tabs() {
         name="Graphs"
         component={Graphs}
         options={{
-          tabBarIcon: (props) => <Entypo name="credit" {...props} />,
+          tabBarIcon: (props) => <Entypo name="pie-chart" {...props} />,
         }}
       />
       <Tab.Screen
         name="Settings"
         component={Settings}
         options={{
-          tabBarIcon: (props) => <Entypo name="credit" {...props} />,
+          tabBarIcon: (props) => <Entypo name="cog" {...props} />,
         }}
       />
     </Tab.Navigator>
