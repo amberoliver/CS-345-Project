@@ -11,6 +11,7 @@ import { StackScreenProps } from "@react-navigation/stack";
 import { RootStackParamList } from "../../navigation/Root";
 import { TabParamList } from "../../navigation/Tabs";
 import moment from "moment";
+import { addExpense } from "../../state/budgetSlice";
 type Props = CompositeScreenProps<
   StackScreenProps<RootStackParamList, "ExpenseModal">,
   BottomTabScreenProps<TabParamList>
@@ -24,11 +25,17 @@ export default function ExpenseModal({ navigation }: Props) {
   function handleSubmit() {
     dispatch(
       create({
-        date: moment(date).format('MMMM Do YYYY, h:mm a'),
+        date: moment(date).format("MMMM Do YYYY, h:mm a"),
         cost,
         name,
         categoryName: category,
         id: new Date().getTime() + "",
+      })
+    );
+    dispatch(
+      addExpense({
+        cost,
+        category,
       })
     );
     navigation.pop();

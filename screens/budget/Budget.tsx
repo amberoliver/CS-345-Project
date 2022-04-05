@@ -7,6 +7,8 @@ import { CompositeScreenProps } from "@react-navigation/native";
 import { StackScreenProps } from "@react-navigation/stack";
 import { TabParamList } from "../../navigation/Tabs";
 import { useSelector } from "react-redux";
+import SegmentedControl from "@react-native-segmented-control/segmented-control";
+import React from "react";
 
 type Props = CompositeScreenProps<
   StackScreenProps<RootStackParamList, "Tabs">,
@@ -15,12 +17,17 @@ type Props = CompositeScreenProps<
 
 export default function BudgetScreen({ navigation }: Props) {
   const budget = useSelector((state) => state.budget);
-  const show = "spent";
+  const [showSpent, setShowSpent] = React.useState(true);
   return (
     <>
+      <SegmentedControl
+        values={["Spent", "Remaining"]}
+        selectedIndex={showSpent ? 0 : 1}
+        onChange={() => setShowSpent(!showSpent)}
+      />
       <FlatList
         data={budget}
-        renderItem={({ item }) => <Category {...item} show={show} />}
+        renderItem={({ item }) => <Category {...item} showSpent={showSpent} />}
         keyExtractor={(item) => item.id}
       />
       <FAB

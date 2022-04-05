@@ -3,6 +3,7 @@ export type Category = {
   name: string;
   amount: number;
   id: string;
+  spent: number;
 };
 const initialState: Category[] = [];
 
@@ -11,12 +12,18 @@ export const budgetSlice = createSlice({
   initialState,
   reducers: {
     create: (budget, { payload }: { payload: Category }) => {
+      payload.spent = 0;
       budget.push(payload);
+    },
+    addExpense: (budget, { payload: { cost, category } }) => {
+      let index = budget.findIndex((cat) => cat.name == category);
+      budget[index].spent += cost;
+      console.log(cost, category, index);
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { create } = budgetSlice.actions;
+export const { create, addExpense } = budgetSlice.actions;
 
 export default budgetSlice.reducer;

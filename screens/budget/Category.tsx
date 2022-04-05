@@ -4,7 +4,7 @@ export type CategoryProps = {
   name: string;
   spent: number;
   amount: number;
-  show?: "remaining" | "spent";
+  showSpent: boolean;
   id: string;
 };
 
@@ -12,10 +12,14 @@ export default function Category({
   name,
   spent,
   amount,
-  show = "spent",
+  showSpent,
 }: CategoryProps) {
-  const number = { remaining: amount - spent, spent }[show];
-  const percent = (1 - amount / amount) * 100;
+  let number = amount - spent;
+  if (showSpent) {
+    number = spent;
+  }
+  let percent = (1 - number / amount) * 100;
+
   return (
     <View
       style={{
@@ -28,7 +32,7 @@ export default function Category({
       <View style={{ flexDirection: "row", alignItems: "flex-end" }}>
         <Text style={{ fontSize: 20 }}>{name}</Text>
         <View style={{ flex: 1 }} />
-        <Text style={{ fontSize: 20, fontWeight: "600" }}>${amount}</Text>
+        <Text style={{ fontSize: 20, fontWeight: "600" }}>${number}</Text>
         <Text style={{ lineHeight: 20 }}>/${amount}</Text>
       </View>
       <View style={{ height: 8 }} />
