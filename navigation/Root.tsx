@@ -27,12 +27,12 @@ export default function Root() {
         <Stack.Screen
           name="ExpenseModal"
           component={ExpenseModal}
-          options={{ presentation: "modal" }}
+          options={{ presentation: "modal", title: "Add Expense" }}
         />
         <Stack.Screen
           name="BudgetModal"
           component={CategoryModal}
-          options={{ presentation: "modal" }}
+          options={{ presentation: "modal", title: "Add Category" }}
         />
       </Stack.Navigator>
     </NavigationContainer>

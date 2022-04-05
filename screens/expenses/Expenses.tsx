@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 import FAB from "../../components/FAB";
 import { RootStackParamList } from "../../navigation/Root";
 import { TabParamList } from "../../navigation/Tabs";
-import Category, { CategoryProps } from "../budget/Category";
 import Expense, { ExpenseProps } from "./Expense";
 type Props = CompositeScreenProps<
   StackScreenProps<RootStackParamList, "Tabs">,

@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 export type CategoryProps = {
   name: string;
   spent: number;
-  total: number;
+  amount: number;
   show?: "remaining" | "spent";
   id: string;
 };
@@ -11,11 +11,11 @@ export type CategoryProps = {
 export default function Category({
   name,
   spent,
-  total,
+  amount,
   show = "spent",
 }: CategoryProps) {
-  const amount = { remaining: total - spent, spent }[show];
-  const percent = (1 - amount / total) * 100;
+  const number = { remaining: amount - spent, spent }[show];
+  const percent = (1 - amount / amount) * 100;
   return (
     <View
       style={{
@@ -29,7 +29,7 @@ export default function Category({
         <Text style={{ fontSize: 20 }}>{name}</Text>
         <View style={{ flex: 1 }} />
         <Text style={{ fontSize: 20, fontWeight: "600" }}>${amount}</Text>
-        <Text style={{ lineHeight: 20 }}>/${total}</Text>
+        <Text style={{ lineHeight: 20 }}>/${amount}</Text>
       </View>
       <View style={{ height: 8 }} />
       <View
