@@ -10,6 +10,7 @@ import { CompositeScreenProps } from "@react-navigation/native";
 import { StackScreenProps } from "@react-navigation/stack";
 import { RootStackParamList } from "../../navigation/Root";
 import { TabParamList } from "../../navigation/Tabs";
+import moment from "moment";
 type Props = CompositeScreenProps<
   StackScreenProps<RootStackParamList, "ExpenseModal">,
   BottomTabScreenProps<TabParamList>
@@ -23,7 +24,7 @@ export default function ExpenseModal({ navigation }: Props) {
   function handleSubmit() {
     dispatch(
       create({
-        date: date.toDateString(),
+        date: moment(date).format('MMMM Do YYYY, h:mm:ss a'),
         cost,
         name,
         categoryName: category,

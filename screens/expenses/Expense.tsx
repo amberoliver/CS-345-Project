@@ -1,3 +1,4 @@
+import moment from "moment";
 import { Text, View } from "react-native";
 export type ExpenseProps = {
   name: string;
@@ -12,6 +13,7 @@ export default function Expense({
   categoryName,
   date,
 }: ExpenseProps) {
+  console.log(date)  
   return (
     <View
       style={{
