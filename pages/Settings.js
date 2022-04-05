@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, TextInput } from "react-native";
 import Card from "../components/Card";
 import Transaction from "../components/Transaction";
 import Button from "../components/Button";
@@ -13,51 +13,9 @@ export default function Settings() {
   const phone = "(252) 355-9323";
   return (
     <View>
-      <Card>
-        <Text style={{ fontSize: 20, fontWeight: "bold" }}>{nameTitle}</Text>
-        <Text style={{ fontSize: 25, flexDirection: "row", textAlign: "left" }}>
-          {name}
-        </Text>
-        <View
-          style={{
-            fontSize: 15,
-            flexDirection: "row-reverse",
-            display: "flex",
-          }}
-        >
-          <Button title="Edit" onPress={() => console.log("button pressed")} />
-        </View>
-      </Card>
-      <Card>
-        <Text style={{ fontSize: 20, fontWeight: "bold" }}>{emailTitle}</Text>
-        <Text style={{ fontSize: 25, flexDirection: "row", textAlign: "left" }}>
-          {email}
-        </Text>
-        <View
-          style={{
-            fontSize: 15,
-            flexDirection: "row-reverse",
-            display: "flex",
-          }}
-        >
-          <Button title="Edit" onPress={() => console.log("button pressed")} />
-        </View>
-      </Card>
-      <Card>
-        <Text style={{ fontSize: 20, fontWeight: "bold" }}>{phoneTitle}</Text>
-        <Text style={{ fontSize: 25, flexDirection: "row", textAlign: "left" }}>
-          {phone}
-        </Text>
-        <View
-          style={{
-            fontSize: 15,
-            flexDirection: "row-reverse",
-            display: "flex",
-          }}
-        >
-          <Button title="Edit" onPress={() => console.log("button pressed")} />
-        </View>
-      </Card>
+      <Setting title="Name:" value="Amber"/>
+      <Setting title="Email:" value="amber@gmail.com"/>
+      <Setting title="Phone Number:" value="808681"/>
       <Button title="Get Help" onPress={() => console.log("button pressed")} />
       <Button title="Logout" onPress={() => console.log("button pressed")} />
       <Button
@@ -65,5 +23,15 @@ export default function Settings() {
         onPress={() => console.log("button pressed")}
       />
     </View>
+  );
+}
+
+function Setting({title, value}) {
+  return (
+    <Card>
+    <Text style={{ fontSize: 20, fontWeight: "bold" }}>{title}</Text>
+    <TextInput style={{ fontSize: 25, flexDirection: "row", textAlign: "left" }} defaultValue = {value}>
+    </TextInput>
+  </Card>
   );
 }
