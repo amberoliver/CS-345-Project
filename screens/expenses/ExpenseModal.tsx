@@ -24,7 +24,7 @@ export default function ExpenseModal({ navigation }: Props) {
   function handleSubmit() {
     dispatch(
       create({
-        date: moment(date).format('MMMM Do YYYY, h:mm:ss a'),
+        date: moment(date).format('MMMM Do YYYY, h:mm a'),
         cost,
         name,
         categoryName: category,
