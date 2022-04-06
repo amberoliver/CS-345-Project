@@ -1,8 +1,9 @@
 import { ScrollView } from "react-native-gesture-handler";
 import { PieChart } from "react-native-chart-kit";
-import { Dimensions, View } from "react-native";
+import { Dimensions, FlatList, View } from "react-native";
 import Card from "../components/Card";
-import { Text } from "react-native-svg";
+import { Text } from "react-native";
+import { useSelector } from "react-redux";
 
 const chartConfig = {
     backgroundGradientFrom: "#1E2923",
@@ -17,93 +18,39 @@ const chartConfig = {
 
   const screenWidth = Dimensions.get("window").width;
 
-const food = [
-    {
-      name: "Total",
-      budget: 300,
-      color: "#0000FF",
-      legendFontColor: "#7F7F7F",
-      legendFontSize: 15
-    },
-    {
-      name: "Remaining",
-      budget: 70,
-      color: "#808080",
-      legendFontColor: "#7F7F7F",
-      legendFontSize: 15
-    },
-  ];
+export default function Graphs() {
+  const budget = useSelector((state) => state.budget);
+  return (
+      <FlatList
+        data={budget}
+        renderItem={({ item }) => <Graph {...item} />}
+        keyExtractor={(item) => item.id}
+      />
+  );
+}
 
-  const rent = [
-    {
-      name: "Total",
-      budget: 400,
-      color: "#0000FF",
-      legendFontColor: "#7F7F7F",
-      legendFontSize: 15
-    },
-    {
-      name: "Remaining",
-      budget: 400,
-      color: "#808080",
-      legendFontColor: "#7F7F7F",
-      legendFontSize: 15
-    },
-  ];
-
-  const entertainment = [
-    {
-      name: "Total",
-      budget: 50,
-      color: "#0000FF",
-      legendFontColor: "#7F7F7F",
-      legendFontSize: 15
-    },
-    {
-      name: "Remaining",
-      budget: 50,
-      color: "#808080",
-      legendFontColor: "#7F7F7F",
-      legendFontSize: 15
-    },
-  ];
-
-  const Transportation = [
-    {
-      name: "Total",
-      budget: 70,
-      color: "#0000FF",
-      legendFontColor: "#7F7F7F",
-      legendFontSize: 15
-    },
-    {
-      name: "Remaining",
-      budget: 40,
-      color: "#808080",
-      legendFontColor: "#7F7F7F",
-      legendFontSize: 15
-    },
-  ];
-
-  export default function Graphs() {
-      return (
-          <ScrollView>
-            <Graph></Graph>
-            <Graph1></Graph1>
-            <Graph2></Graph2>
-            <Graph3></Graph3>
-          </ScrollView>
-      );
-  }
-
-export function Graph() {
+function Graph({amount, spent, name}) {
     return (
-      <Card>
-        <Text>
-          Food
+      <Card margin>
+        <Text style ={{fontWeight: "bold", textAlign: "center", fontSize: 20}}>
+          {name}
         </Text>
+        <View style = {{transform: [{translateX: -50}]}}>
     <PieChart 
-      data={food}
+      data={[{
+        name: "Spent",
+        budget: spent,
+        color: "#0000FF",
+        legendFontColor: "#7F7F7F",
+        legendFontSize: 15
+      },
+      {
+        name: "Remaining",
+        budget: amount - spent,
+        color: "#808080",
+        legendFontColor: "#7F7F7F",
+        legendFontSize: 15
+      }]}
       width={screenWidth}
       height={150}
       chartConfig={chartConfig}
@@ -113,60 +60,7 @@ export function Graph() {
       center={[5, 5]}
       absolute
     />
+    </View>
 </Card>
-    );
-}
-
-export function Graph1() {
-    return(
-      <Card>
-      <PieChart
-        data = {rent}
-        width={screenWidth}
-        height={150}
-        chartConfig={chartConfig}
-        accessor={"budget"}
-        backgroundColor={"transparent"}
-        paddingLeft={"15"}
-        center={[5, 5]}
-        absolute
-        />
-        </Card>
-    );
-}
-
-export function Graph2() {
-    return(
-      <Card>
-      <PieChart
-        data = {entertainment}
-        width={screenWidth}
-        height={150}
-        chartConfig={chartConfig}
-        accessor={"budget"}
-        backgroundColor={"transparent"}
-        paddingLeft={"15"}
-        center={[5, 5]}
-        absolute
-        />
-        </Card>
-    );
-}
-
-export function Graph3() {
-    return(
-      <Card>
-      <PieChart
-        data = {Transportation}
-        width={screenWidth}
-        height={150}
-        chartConfig={chartConfig}
-        accessor={"budget"}
-        backgroundColor={"transparent"}
-        paddingLeft={"15"}
-        center={[5, 5]}
-        absolute
-        />
-        </Card>
     );
 }
