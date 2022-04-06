@@ -3,7 +3,7 @@ import Input from "../../components/Input";
 import CurrencyInput from "react-native-currency-input";
 import React from "react";
 import DateInput from "../../components/DateInput";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { create } from "../../state/expensesSlice";
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { CompositeScreenProps } from "@react-navigation/native";
@@ -12,12 +12,14 @@ import { RootStackParamList } from "../../navigation/Root";
 import { TabParamList } from "../../navigation/Tabs";
 import moment from "moment";
 import { addExpense } from "../../state/budgetSlice";
+import Select from "../../components/Select";
 type Props = CompositeScreenProps<
   StackScreenProps<RootStackParamList, "ExpenseModal">,
   BottomTabScreenProps<TabParamList>
 >;
 export default function ExpenseModal({ navigation }: Props) {
   const dispatch = useDispatch();
+  const budget = useSelector((state: any) => state.budget);
   const [cost, setCost] = React.useState(null); // can also be null
   const [date, setDate] = React.useState(new Date());
   const [name, setName] = React.useState("");
@@ -53,11 +55,11 @@ export default function ExpenseModal({ navigation }: Props) {
         onChangeText={setName}
         value={name}
       />
-      <Input
+      <Select
         title="Category"
-        placeholder="Food"
-        onChangeText={setCategory}
-        value={category}
+        placeholder="Select Category"
+        items={budget.map((cat: any) => ({ label: cat.name, value: cat.name }))}
+        onValueChange={setCategory}
       />
       <Input
         title="Cost"

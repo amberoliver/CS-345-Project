@@ -16,7 +16,6 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
-
     },
     "android": {
       "adaptiveIcon": {
@@ -27,6 +26,6 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "userInterfaceStyle": "automatic"
+    "userInterfaceStyle": "light"
   }
 }

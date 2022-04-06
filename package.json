@@ -28,15 +28,17 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-native": "0.64.3",
+    "react-native-appearance": "~0.3.3",
     "react-native-chart-kit": "^6.12.0",
     "react-native-currency-input": "^1.0.1",
     "react-native-gesture-handler": "~2.1.0",
     "react-native-modal-datetime-picker": "^13.1.2",
+    "react-native-picker-select": "^8.0.4",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.10.1",
+    "react-native-svg": "12.1.1",
     "react-native-web": "0.17.1",
-    "react-redux": "^7.2.8",
-    "react-native-svg": "12.1.1"
+    "react-redux": "^7.2.8"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
