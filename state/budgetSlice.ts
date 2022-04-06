@@ -12,7 +12,6 @@ export const budgetSlice = createSlice({
   initialState,
   reducers: {
     create: (budget, { payload }: { payload: Category }) => {
-      payload.spent = 0;
       budget.push(payload);
     },
     addExpense: (budget, { payload: { cost, category } }) => {

@@ -23,6 +23,7 @@ export default function EditCategory({ navigation }: Props) {
         amount,
         name,
         id: new Date().getTime() + "",
+        spent: 0,
       })
     );
     navigation.pop();
