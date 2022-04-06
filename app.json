@@ -15,14 +15,10 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "bundleIdentifier": "com.cs345project",
-      "googleServicesFile": "./GoogleService-Info.plist",
       "supportsTablet": true
 
     },
     "android": {
-      "package": "com.cs345project",
-      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
