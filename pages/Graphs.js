@@ -40,14 +40,14 @@ function Graph({amount, spent, name}) {
       data={[{
         name: "Spent",
         budget: spent,
-        color: "#0000FF",
+        color: "#808080",
         legendFontColor: "#7F7F7F",
         legendFontSize: 15
       },
       {
         name: "Remaining",
         budget: amount - spent,
-        color: "#808080",
+        color: "#0000FF",
         legendFontColor: "#7F7F7F",
         legendFontSize: 15
       }]}
