@@ -16,7 +16,7 @@ type Props = CompositeScreenProps<
 >;
 
 export default function BudgetScreen({ navigation }: Props) {
-  const budget = useSelector((state) => state.budget);
+  const budget = useSelector((state: any) => state.budget);
   const [showSpent, setShowSpent] = React.useState(true);
   return (
     <>

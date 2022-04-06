@@ -14,20 +14,25 @@ type Props = CompositeScreenProps<
 >;
 
 export default function Expenses({ navigation }: Props) {
-  const expenses = useSelector((state) => state.expenses);
+  const expenses = useSelector((state: any) => state.expenses);
+  const hasCategory = useSelector((state: any) => state.budget.length > 0);
   const show = "spent";
-  return (
-    <>
-      <FlatList
-        data={expenses}
-        renderItem={({ item }) => <Expense {...item} />}
-        keyExtractor={(item) => item.id}
-      />
-      <FAB
-        onPress={() => {
-          navigation.navigate("ExpenseModal");
-        }}
-      />
-    </>
-  );
+  if (hasCategory) {
+    return (
+      <>
+        <FlatList
+          data={expenses}
+          renderItem={({ item }) => <Expense {...item} />}
+          keyExtractor={(item) => item.id}
+        />
+        <FAB
+          onPress={() => {
+            navigation.navigate("ExpenseModal");
+          }}
+        />
+      </>
+    );
+  } else {
+    return <Text>Please Create Your Budget</Text>;
+  }
 }

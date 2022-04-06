@@ -13,9 +13,9 @@ export default function Settings() {
   const phone = "(252) 355-9323";
   return (
     <View>
-      <Setting title="Name:" value="Amber"/>
-      <Setting title="Email:" value="amber@gmail.com"/>
-      <Setting title="Phone Number:" value="808681"/>
+      <Setting title="Name:" placeholder="John Doe" />
+      <Setting title="Email:" placeholder="johndoe@gmail.com" />
+      <Setting title="Phone Number:" placeholder="(200) 425-4901" />
       <Button title="Get Help" onPress={() => console.log("button pressed")} />
       <Button title="Logout" onPress={() => console.log("button pressed")} />
       <Button
@@ -26,12 +26,15 @@ export default function Settings() {
   );
 }
 
-function Setting({title, value}) {
+function Setting({ title, value, placeholder }) {
   return (
     <Card>
-    <Text style={{ fontSize: 20, fontWeight: "bold" }}>{title}</Text>
-    <TextInput style={{ fontSize: 25, flexDirection: "row", textAlign: "left" }} defaultValue = {value}>
-    </TextInput>
-  </Card>
+      <Text style={{ fontSize: 20, fontWeight: "bold" }}>{title}</Text>
+      <TextInput
+        style={{ fontSize: 25, flexDirection: "row", textAlign: "left" }}
+        defaultValue={value}
+        placeholder={placeholder}
+      ></TextInput>
+    </Card>
   );
 }

@@ -18,11 +18,16 @@ type Props = CompositeScreenProps<
 >;
 export default function ExpenseModal({ navigation }: Props) {
   const dispatch = useDispatch();
-  const [cost, setCost] = React.useState(0); // can also be null
+  const [cost, setCost] = React.useState(null); // can also be null
   const [date, setDate] = React.useState(new Date());
   const [name, setName] = React.useState("");
   const [category, setCategory] = React.useState("");
+  const [error, setError] = React.useState(false);
   function handleSubmit() {
+    if (cost == null || cost <= 0 || name == "" || category == "") {
+      setError(true);
+      return;
+    }
     dispatch(
       create({
         date: moment(date).format("MMMM Do YYYY, h:mm a"),
@@ -66,6 +71,11 @@ export default function ExpenseModal({ navigation }: Props) {
         placeholder="$0.00"
       />
       <DateInput date={date} dateChange={setDate} />
+      {error && (
+        <Text style={{ color: "red", fontSize: 20, textAlign: "center" }}>
+          Name, category, and cost are required.
+        </Text>
+      )}
       <Button onPress={handleSubmit} title="Submit" />
     </View>
   );
