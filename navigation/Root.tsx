@@ -9,7 +9,7 @@ import ExpenseModal from "../screens/expenses/ExpenseModal";
 import Tabs, { TabParamList } from "./Tabs";
 export type RootStackParamList = {
   Tabs: NavigatorScreenParams<TabParamList>;
-  ExpenseModal: undefined;
+  ExpenseModal: { id: string };
   BudgetModal: undefined;
 };
 const Stack = createStackNavigator<RootStackParamList>();
@@ -27,7 +27,8 @@ export default function Root() {
         <Stack.Screen
           name="ExpenseModal"
           component={ExpenseModal}
-          options={{ presentation: "modal", title: "Add Expense" }}
+          options={{ presentation: "modal" }}
+          initialParams={{ id: undefined }}
         />
         <Stack.Screen
           name="BudgetModal"

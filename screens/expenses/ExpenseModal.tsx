@@ -1,10 +1,10 @@
-import { Button, Text, View } from "react-native";
+import { Alert, Button, Text, View } from "react-native";
 import Input from "../../components/Input";
 import CurrencyInput from "react-native-currency-input";
-import React from "react";
+import React, { useEffect } from "react";
 import DateInput from "../../components/DateInput";
 import { useDispatch, useSelector } from "react-redux";
-import { create } from "../../state/expensesSlice";
+import { create, remove, update } from "../../state/expensesSlice";
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { CompositeScreenProps } from "@react-navigation/native";
 import { StackScreenProps } from "@react-navigation/stack";
@@ -13,72 +13,119 @@ import { TabParamList } from "../../navigation/Tabs";
 import moment from "moment";
 import { addExpense } from "../../state/budgetSlice";
 import Select from "../../components/Select";
+import { useAppSelector } from "../../state/hooks";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import type { ExpenseType } from "../../state/expensesSlice";
+import HeaderButton from "../../components/HeaderButton";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { KeyboardAvoidingView } from "native-base";
+
 type Props = CompositeScreenProps<
   StackScreenProps<RootStackParamList, "ExpenseModal">,
   BottomTabScreenProps<TabParamList>
 >;
-export default function ExpenseModal({ navigation }: Props) {
+export default function ExpenseModal({ navigation, route }: Props) {
+  const { id } = route.params;
+  const def: ExpenseType = {
+    id: new Date().getTime() + "",
+    category: "",
+    name: "",
+    cost: 0,
+    date: new Date().getTime(),
+  };
+  const initial =
+    useAppSelector((state) => state.expenses.find((e) => e.id == id)) || def;
+  const [expense, setExpense] = React.useState(initial);
   const dispatch = useDispatch();
   const budget = useSelector((state: any) => state.budget);
-  const [cost, setCost] = React.useState(null); // can also be null
-  const [date, setDate] = React.useState(new Date());
-  const [name, setName] = React.useState("");
-  const [category, setCategory] = React.useState("");
   const [error, setError] = React.useState(false);
+
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      title: id === "" ? "Add Expense" : "Edit Expense",
+      headerLeft: () => (
+        <HeaderButton onPress={() => navigation.pop()} title="Cancel" />
+      ),
+      headerRight: () => (
+        <HeaderButton onPress={() => handleSubmit()} title="Save" />
+      ),
+    });
+  }, [navigation, expense]);
+
   function handleSubmit() {
-    if (cost == null || cost <= 0 || name == "" || category == "") {
+    if (expense.cost <= 0 || expense.name == "" || expense.category == "") {
       setError(true);
       return;
     }
-    dispatch(
-      create({
-        date: moment(date).format("MMMM Do YYYY, h:mm a"),
-        cost,
-        name,
-        categoryName: category,
-        id: new Date().getTime() + "",
-      })
-    );
-    dispatch(
-      addExpense({
-        cost,
-        category,
-      })
-    );
+    if (id == "") {
+      dispatch(create(expense));
+      dispatch(addExpense(expense));
+    } else {
+      dispatch(update(expense));
+      dispatch(addExpense({ ...expense, cost: expense.cost - initial.cost }));
+    }
+
     navigation.pop();
   }
+  function confirmDelete() {
+    Alert.alert("Confirm Deletion", undefined, [
+      { text: "Cancel" },
+      { text: "Delete", style: "destructive", onPress: handleDelete },
+    ]);
+  }
+  function handleDelete() {
+    dispatch(addExpense({ ...expense, cost: -initial.cost }));
+    dispatch(remove(expense));
+    navigation.pop();
+  }
+  const insets = useSafeAreaInsets();
+
   return (
     <View>
       <Input
         title="Name"
         placeholder="French Fries"
-        onChangeText={setName}
-        value={name}
+        onChangeText={(name: string) => setExpense({ ...expense, name })}
+        value={expense.name}
       />
       <Select
         title="Category"
+        value={expense.category}
         placeholder="Select Category"
-        items={budget.map((cat: any) => ({ label: cat.name, value: cat.name }))}
-        onValueChange={setCategory}
+        items={budget.map((cat: any) => ({
+          label: cat.name,
+          value: cat.name,
+        }))}
+        onValueChange={(category: string) =>
+          setExpense({ ...expense, category })
+        }
       />
       <Input
         title="Cost"
         inputComponent={CurrencyInput}
-        value={cost}
-        onChangeValue={setCost}
+        value={expense.cost}
+        onChangeValue={(cost: number) => setExpense({ ...expense, cost })}
         prefix="$"
         delimiter=","
         separator="."
         precision={2}
         placeholder="$0.00"
       />
-      <DateInput date={date} dateChange={setDate} />
+      <DateInput
+        date={new Date(expense.date)}
+        dateChange={(date: Date) =>
+          setExpense({ ...expense, date: date.getTime() })
+        }
+      />
       {error && (
         <Text style={{ color: "red", fontSize: 20, textAlign: "center" }}>
           Name, category, and cost are required.
         </Text>
       )}
-      <Button onPress={handleSubmit} title="Submit" />
+      <View style={{ flex: 1 }}></View>
+      {id !== "" && (
+        <Button onPress={confirmDelete} title="Delete Expense" color="red" />
+      )}
     </View>
   );
 }

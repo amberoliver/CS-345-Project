@@ -5,12 +5,14 @@ interface SelectProps {
   onValueChange: (val: string) => void;
   items: { label: string; value: any }[];
   title: string;
+  value: string;
 }
 export default function Select({
   placeholder,
   onValueChange,
   items,
   title,
+  value,
 }: SelectProps) {
   return (
     <View
@@ -28,6 +30,7 @@ export default function Select({
           style={pickerSelectStyles}
           useNativeAndroidPickerStyle={false}
           onValueChange={onValueChange}
+          value={value}
           placeholder={{
             label: placeholder,
             value: null,
