@@ -2,6 +2,7 @@ import moment from "moment";
 import React from "react";
 import { Button, Pressable, Text, View } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import useColor from "../useColor";
 type Props = {
   date: Date;
   dateChange: (date: Date) => void;
@@ -21,25 +22,26 @@ export default function DateInput({ date, dateChange }: Props) {
     dateChange(date);
     hideDatePicker();
   };
+  const color = useColor();
   return (
     <Pressable
       style={{
         flexDirection: "row",
         padding: 5,
         borderBottomWidth: 2,
-        borderColor: "#F6F6F6",
-        backgroundColor: "white",
+        borderColor: color.border,
+        backgroundColor: color.card,
       }}
       onPress={showDatePicker}
     >
-      <Text style={{ fontSize: 20, padding: 10 }}>Date</Text>
+      <Text style={{ fontSize: 20, padding: 10, color: color.font }}>Date</Text>
       <Text
         style={{
           fontSize: 20,
           padding: 10,
           flex: 1,
           textAlign: "right",
-          color: "blue",
+          color: color.accent,
         }}
       >
         {moment(date).format("MMMM Do, h:mm a")}

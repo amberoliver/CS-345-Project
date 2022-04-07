@@ -7,12 +7,14 @@ import {
   CompositeNavigationProp,
 } from "@react-navigation/native";
 import { StackNavigationProp, StackScreenProps } from "@react-navigation/stack";
+import { color } from "native-base/lib/typescript/theme/styled-system";
 import { ListRenderItemInfo, Text, View } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import { useSelector } from "react-redux";
 import FAB from "../../components/FAB";
 import { RootStackParamList } from "../../navigation/Root";
 import { TabParamList } from "../../navigation/Tabs";
+import useColor from "../../useColor";
 import Expense, { ExpenseProps } from "./Expense";
 type Props = CompositeScreenProps<
   StackScreenProps<RootStackParamList, "Tabs">,
@@ -25,6 +27,7 @@ export type ExpensesNav = CompositeNavigationProp<
 >;
 
 export default function Expenses({ navigation }: Props) {
+  const color = useColor();
   const expenses = useSelector((state: any) => state.expenses);
   const hasCategory = useSelector((state: any) => state.budget.length > 0);
   const show = "spent";
@@ -44,6 +47,6 @@ export default function Expenses({ navigation }: Props) {
       </>
     );
   } else {
-    return <Text>Please Create Your Budget</Text>;
+    return <Text style={{ color: color.font }}>Please Create Your Budget</Text>;
   }
 }

@@ -1,9 +1,12 @@
 import {
+  DarkTheme,
+  DefaultTheme,
   NavigationContainer,
   NavigatorScreenParams,
 } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { StatusBar } from "expo-status-bar";
+import { useColorScheme } from "react-native";
 import CategoryModal from "../screens/budget/CategoryModal";
 import ExpenseModal from "../screens/expenses/ExpenseModal";
 import Tabs, { TabParamList } from "./Tabs";
@@ -15,9 +18,10 @@ export type RootStackParamList = {
 const Stack = createStackNavigator<RootStackParamList>();
 
 export default function Root() {
+  let scheme = useColorScheme();
   return (
-    <NavigationContainer>
-      <StatusBar style="dark" />
+    <NavigationContainer theme={scheme === "dark" ? DarkTheme : DefaultTheme}>
+      <StatusBar style={scheme === "dark" ? "light" : "dark"} />
       <Stack.Navigator>
         <Stack.Screen
           name="Tabs"

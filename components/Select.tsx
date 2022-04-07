@@ -1,5 +1,7 @@
+import { useMemo } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
+import useColor from "../useColor";
 interface SelectProps {
   placeholder: string;
   onValueChange: (val: string) => void;
@@ -14,17 +16,39 @@ export default function Select({
   title,
   value,
 }: SelectProps) {
+  const color = useColor();
+  const pickerSelectStyles = useMemo(
+    () =>
+      StyleSheet.create({
+        inputIOS: {
+          fontSize: 20,
+          padding: 10,
+          color: color.accent,
+          textAlign: "right",
+        },
+        inputAndroid: {
+          fontSize: 20,
+          padding: 10,
+          color: color.accent,
+          textAlign: "right",
+        },
+      }),
+    [color.accent]
+  );
+
   return (
     <View
       style={{
         flexDirection: "row",
         padding: 5,
         borderBottomWidth: 2,
-        borderColor: "#F6F6F6",
-        backgroundColor: "white",
+        borderColor: color.border,
+        backgroundColor: color.card,
       }}
     >
-      <Text style={{ fontSize: 20, padding: 10 }}>{title}</Text>
+      <Text style={{ fontSize: 20, padding: 10, color: color.font }}>
+        {title}
+      </Text>
       <View style={{ flex: 1 }}>
         <RNPickerSelect
           style={pickerSelectStyles}
@@ -42,17 +66,3 @@ export default function Select({
     </View>
   );
 }
-const pickerSelectStyles = StyleSheet.create({
-  inputIOS: {
-    fontSize: 20,
-    padding: 10,
-    color: "blue",
-    textAlign: "right",
-  },
-  inputAndroid: {
-    fontSize: 20,
-    padding: 10,
-    color: "blue",
-    textAlign: "right",
-  },
-});

@@ -2,6 +2,7 @@ import { View, Text, TextInput } from "react-native";
 import Card from "../components/Card";
 import Transaction from "../components/Transaction";
 import Button from "../components/Button";
+import useColor from "../useColor";
 
 const nameTitle = "Name:";
 const emailTitle = "Email:";
@@ -27,11 +28,19 @@ export default function Settings() {
 }
 
 function Setting({ title, value, placeholder }) {
+  const color = useColor();
   return (
     <Card>
-      <Text style={{ fontSize: 20, fontWeight: "bold" }}>{title}</Text>
+      <Text style={{ fontSize: 20, fontWeight: "bold", color: color.font }}>
+        {title}
+      </Text>
       <TextInput
-        style={{ fontSize: 25, flexDirection: "row", textAlign: "left" }}
+        style={{
+          fontSize: 25,
+          flexDirection: "row",
+          textAlign: "left",
+          color: color.font,
+        }}
         defaultValue={value}
         placeholder={placeholder}
       ></TextInput>

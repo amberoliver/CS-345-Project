@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
+import useColor from "../../useColor";
 
 export type CategoryProps = {
   name: string;
@@ -19,26 +20,28 @@ export default function Category({
     number = spent;
   }
   let percent = (1 - number / amount) * 100;
-
+  const color = useColor();
   return (
     <View
       style={{
         padding: 15,
         borderBottomWidth: 2,
-        borderColor: "#F6F6F6",
-        backgroundColor: "white",
+        borderColor: color.border,
+        backgroundColor: color.card,
       }}
     >
       <View style={{ flexDirection: "row", alignItems: "flex-end" }}>
-        <Text style={{ fontSize: 20 }}>{name}</Text>
+        <Text style={{ fontSize: 20, color: color.font }}>{name}</Text>
         <View style={{ flex: 1 }} />
-        <Text style={{ fontSize: 20, fontWeight: "600" }}>${number}</Text>
-        <Text style={{ lineHeight: 20 }}>/${amount}</Text>
+        <Text style={{ fontSize: 20, fontWeight: "600", color: color.font }}>
+          ${number}
+        </Text>
+        <Text style={{ lineHeight: 20, color: color.font }}>/${amount}</Text>
       </View>
       <View style={{ height: 8 }} />
       <View
         style={{
-          backgroundColor: "#3B82F6",
+          backgroundColor: color.accent,
           height: 4,
           width: "100%",
           borderRadius: 2,

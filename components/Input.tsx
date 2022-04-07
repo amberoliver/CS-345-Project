@@ -1,6 +1,7 @@
 import { Text, View } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import type { TextInputProps } from "react-native";
+import useColor from "../useColor";
 export interface InputProps extends TextInputProps {
   title: string;
   inputComponent?: any;
@@ -11,17 +12,20 @@ export default function Input({
   inputComponent: Input = TextInput,
   ...rest
 }: InputProps | any) {
+  const color = useColor();
   return (
     <View
       style={{
         flexDirection: "row",
         padding: 5,
         borderBottomWidth: 2,
-        borderColor: "#F6F6F6",
-        backgroundColor: "white",
+        borderColor: color.border,
+        backgroundColor: color.card,
       }}
     >
-      <Text style={{ fontSize: 20, padding: 10 }}>{title}</Text>
+      <Text style={{ fontSize: 20, padding: 10, color: color.font }}>
+        {title}
+      </Text>
       <Input
         style={[
           {
@@ -29,7 +33,7 @@ export default function Input({
             flex: 1,
             fontSize: 20,
             textAlign: "right",
-            color: "blue",
+            color: color.accent,
           },
           style,
         ]}

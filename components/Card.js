@@ -1,4 +1,5 @@
 import { View, Pressable } from "react-native";
+import useColor from "../useColor";
 export default function Card({
   children,
   color,
@@ -7,13 +8,14 @@ export default function Card({
   margin,
   noPad,
 }) {
+  const c = useColor();
   return (
     <Pressable
       style={{
         shadowColor: "black",
         shadowOpacity: 0.1,
-        backgroundColor: "white",
-        borderColor: "#DEDEDE",
+        backgroundColor: c.card,
+        borderColor: c.border,
         shadowRadius: 2,
         shadowOffset: { width: 2, height: 2 },
         borderRadius: 8,

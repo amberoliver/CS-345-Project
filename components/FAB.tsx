@@ -1,15 +1,17 @@
 import { Pressable } from "react-native";
 import { Entypo } from "@expo/vector-icons";
+import useColor from "../useColor";
 type Props = {
   onPress: () => void;
 };
 export default function FAB({ onPress }: Props) {
+  const color = useColor();
   return (
     <Pressable
       style={{
         width: 60,
         height: 60,
-        backgroundColor: "blue",
+        backgroundColor: color.accent,
         position: "absolute",
         right: 20,
         borderRadius: 100,
