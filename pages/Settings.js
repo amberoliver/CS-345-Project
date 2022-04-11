@@ -80,6 +80,7 @@ function Setting({ title, placeholder, validate, ...rest }) {
           textAlign: "left",
           color: color.font,
         }}
+        returnKeyType="done"
         onBlur={handleBlur}
         value={value}
         onChangeText={setValue}
