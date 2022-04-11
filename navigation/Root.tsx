@@ -13,7 +13,7 @@ import Tabs, { TabParamList } from "./Tabs";
 export type RootStackParamList = {
   Tabs: NavigatorScreenParams<TabParamList>;
   ExpenseModal: { id: string };
-  BudgetModal: undefined;
+  BudgetModal: { id: string };
 };
 const Stack = createStackNavigator<RootStackParamList>();
 
