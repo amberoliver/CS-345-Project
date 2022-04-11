@@ -31,7 +31,12 @@ export default function EditCategory({ navigation, route }: Props) {
 
   const [amount, setCategoryAmount] = React.useState(category.amount); // can also be null
   const [name, setCategoryName] = React.useState(category.name);
+  const [error, setError] = React.useState(false);
   function handleSubmit() {
+    if (name == "" || amount < 1) {
+      setError(true);
+      return;
+    }
     if (id == "") {
       dispatch(
         create({
@@ -88,6 +93,11 @@ export default function EditCategory({ navigation, route }: Props) {
         precision={2}
         placeholder="$0.00"
       />
+      {error && (
+        <Text style={{ color: "red", fontSize: 20, textAlign: "center" }}>
+          Amount must be greater than $1, and there must be a name.
+        </Text>
+      )}
       {id !== "" && (
         <Button onPress={confirmDelete} title="Delete Category" color="red" />
       )}
