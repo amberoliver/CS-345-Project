@@ -50,7 +50,7 @@ function Graph({ amount, spent, name }) {
             {
               name: "Spent",
               budget: spent,
-              color: "#808080",
+              color: "#b9d7f5",
               legendFontColor: color.font,
               legendFontSize: 15,
             },
