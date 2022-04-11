@@ -50,23 +50,14 @@ export default function Settings() {
 
 function Setting({ title, placeholder, validate, ...rest }) {
   const color = useColor();
-  const [prev, setPrev] = useState("");
   const [value, setValue] = useState("");
   const [error, setError] = useState(null);
   useEffect(() => {
     if (validate) {
       setError(validate(value) || null);
-    } else {
-      setPrev(value);
     }
   }, [value]);
 
-  function handleBlur() {
-    if (error) {
-      setValue(prev);
-      setError(null);
-    }
-  }
   return (
     <Card>
       <Text style={{ fontSize: 20, fontWeight: "bold", color: color.font }}>
@@ -81,7 +72,6 @@ function Setting({ title, placeholder, validate, ...rest }) {
           color: color.font,
         }}
         returnKeyType="done"
-        onBlur={handleBlur}
         value={value}
         onChangeText={setValue}
         placeholder={placeholder}
