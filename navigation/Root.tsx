@@ -7,6 +7,9 @@ import {
 import { createStackNavigator } from "@react-navigation/stack";
 import { StatusBar } from "expo-status-bar";
 import { useColorScheme } from "react-native";
+import Login from "../screens/auth/Login";
+import Register from "../screens/auth/Register";
+import Start from "../screens/auth/Start";
 import CategoryModal from "../screens/budget/CategoryModal";
 import ExpenseModal from "../screens/expenses/ExpenseModal";
 import Tabs, { TabParamList } from "./Tabs";
@@ -14,6 +17,9 @@ export type RootStackParamList = {
   Tabs: NavigatorScreenParams<TabParamList>;
   ExpenseModal: { id: string };
   BudgetModal: { id: string };
+  Login: undefined;
+  Register: undefined;
+  Start: undefined;
 };
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -22,7 +28,7 @@ export default function Root() {
   return (
     <NavigationContainer theme={scheme === "dark" ? DarkTheme : DefaultTheme}>
       <StatusBar style={scheme === "dark" ? "light" : "dark"} />
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName="Start">
         <Stack.Screen
           name="Tabs"
           component={Tabs}
@@ -39,6 +45,9 @@ export default function Root() {
           component={CategoryModal}
           options={{ presentation: "modal", title: "Add Category" }}
         />
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Register" component={Register} />
+        <Stack.Screen name="Start" component={Start} />
       </Stack.Navigator>
     </NavigationContainer>
   );

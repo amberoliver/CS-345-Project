@@ -14,14 +14,17 @@ export const expensesSlice = createSlice({
   reducers: {
     create: (expenses, { payload }: { payload: ExpenseType }) => {
       expenses.push(payload);
+      expenses.sort((a, b) => b.date - a.date);
     },
     update: (expenses, { payload }: { payload: ExpenseType }) => {
       let index = expenses.findIndex((e) => e.id === payload.id);
       expenses[index] = payload;
+      expenses.sort((a, b) => b.date - a.date);
     },
     remove: (expenses, { payload }: { payload: ExpenseType }) => {
       let index = expenses.findIndex((e) => e.id === payload.id);
       expenses.splice(index, 1);
+      expenses.sort((a, b) => b.date - a.date);
     },
   },
 });
