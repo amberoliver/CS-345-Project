@@ -1,23 +1,39 @@
+import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
+import { CompositeScreenProps } from "@react-navigation/native";
+import { StackScreenProps } from "@react-navigation/stack";
 import { Center, View } from "native-base";
 import React from "react";
 import { Text } from "react-native";
-import { registerUser } from "../../api";
+import { loginUser, registerUser } from "../../api";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
+import { RootStackParamList } from "../../navigation/Root";
+import { TabParamList } from "../../navigation/Tabs";
+import { login } from "../../state/authSlice";
+import { useAppDispatch } from "../../state/hooks";
 import useColor from "../../useColor";
 
-export default function Register() {
+type Props = CompositeScreenProps<
+  StackScreenProps<RootStackParamList, "Register">,
+  BottomTabScreenProps<TabParamList>
+>;
+export default function Register({ navigation }: Props) {
   const color = useColor();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [confirm, setConfirm] = React.useState("");
   const [phone, setPhone] = React.useState("");
   const [name, setName] = React.useState("");
+  const dispatch = useAppDispatch();
 
   function handleRegister() {
-    registerUser(name, phone, email, password).then((res) =>
-      console.log(JSON.stringify(res))
-    );
+    registerUser(name, phone, email, password).then((res) => {
+      //console.log(JSON.stringify(res));
+      loginUser(email, password).then((token) => {
+        dispatch(login({ email, token, phone, name }));
+        navigation.push("Tabs");
+      });
+    });
   }
   return (
     <View style={{ flex: 1 }}>

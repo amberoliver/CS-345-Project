@@ -15,26 +15,13 @@ export async function registerUser(name, phone, email, password) {
 //logs user in with email and password. returns auth token to be stored in local storage
 //and presented when accessing user data
 
-export function loginUser(email, password) {
-  fetch("https://cs-backend.herokuapp.com/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      email: email,
-
-      password: password,
-    }),
-  }).then((res) => {
-    if (res.ok) {
-      console.log(res.headers.get("auth-token"));
-
-      return res.headers.get("auth-token");
-    } else {
-      console.log("fail");
-    }
+export async function loginUser(email, password) {
+  let res = await axios.post("https://cs-backend.herokuapp.com/login", {
+    email,
+    password,
   });
+  return res.headers["auth-token"];
+  // .get("auth-token")
 }
 
 //for getting the users data when they login, takes the users auth token and uses it to find their

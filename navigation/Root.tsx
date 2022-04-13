@@ -14,7 +14,7 @@ import CategoryModal from "../screens/budget/CategoryModal";
 import ExpenseModal from "../screens/expenses/ExpenseModal";
 import Tabs, { TabParamList } from "./Tabs";
 export type RootStackParamList = {
-  Tabs: NavigatorScreenParams<TabParamList>;
+  Tabs: undefined;
   ExpenseModal: { id: string };
   BudgetModal: { id: string };
   Login: undefined;

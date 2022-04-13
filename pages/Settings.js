@@ -17,9 +17,11 @@ export default function Settings() {
   }
 
   function validatePhone(phone) {
-    //phone will be a string
-    //implement this
-    return null;
+    if (phone.length != 10) {
+      return "Phone number is not valid.";
+    } else {
+      return null;
+    }
   }
 
   return (
