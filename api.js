@@ -48,7 +48,13 @@ export function getUserData(token) {
 
 //this will be for updating any of the users info, including name email phone password and category information
 
-function updateUser(data) {}
+export async function updateUser(token, data) {
+
+    
+
+}
+
+//deletes user by their login token
 
 export async function deleteUser(token) {
 
