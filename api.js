@@ -49,3 +49,17 @@ export function getUserData(token) {
 //this will be for updating any of the users info, including name email phone password and category information
 
 function updateUser(data) {}
+
+export async function deleteUser(token) {
+
+    let res = await axios.post({
+        method: 'DELETE',
+        url: 'https://cs-backend.herokuapp.com/register',
+        headers: {'auth-token': token}
+      });
+  return res.data;
+}
+
+
+
+}
