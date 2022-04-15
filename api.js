@@ -60,7 +60,7 @@ export async function deleteUser(token) {
 
     let res = await axios.post({
         method: 'DELETE',
-        url: 'https://cs-backend.herokuapp.com/register',
+        url: 'https://cs-backend.herokuapp.com/data',
         headers: {'auth-token': token}
       });
   return res.data;
