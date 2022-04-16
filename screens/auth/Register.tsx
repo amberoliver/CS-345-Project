@@ -1,9 +1,8 @@
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { CompositeScreenProps } from "@react-navigation/native";
 import { StackScreenProps } from "@react-navigation/stack";
-import { Center, View } from "native-base";
 import React from "react";
-import { Text } from "react-native";
+import { KeyboardAvoidingView, Platform, ScrollView, Text, View } from "react-native";
 import { loginUser, registerUser } from "../../api";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
@@ -12,6 +11,7 @@ import { TabParamList } from "../../navigation/Tabs";
 import { login } from "../../state/authSlice";
 import { useAppDispatch } from "../../state/hooks";
 import useColor from "../../useColor";
+import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 type Props = CompositeScreenProps<
   StackScreenProps<RootStackParamList, "Register">,
@@ -36,8 +36,9 @@ export default function Register({ navigation }: Props) {
     });
   }
   return (
-    <View style={{ flex: 1 }}>
-      <Text
+    <View style={{flex:1}}>
+      <ScrollView style={{flex:1}}>
+          <Text
         style={{
           color: color.font,
           fontSize: 32,
@@ -90,6 +91,8 @@ export default function Register({ navigation }: Props) {
         onChangeText={setConfirm}
       />
       <Button title="Register" onPress={handleRegister} />
+    </ScrollView>
+    <KeyboardSpacer/>
     </View>
   );
 }

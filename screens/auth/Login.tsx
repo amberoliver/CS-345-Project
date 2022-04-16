@@ -1,6 +1,7 @@
 import { Center, View } from "native-base";
 import React from "react";
-import { Text } from "react-native";
+import { ScrollView, Text } from "react-native";
+import KeyboardSpacer from "react-native-keyboard-spacer";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import useColor from "../../useColor";
@@ -11,7 +12,10 @@ export default function Login() {
   const [password, setPassword] = React.useState("");
 
   return (
-    <View style={{ flex: 1 }}>
+
+        <View style={{flex:1}}>
+      <ScrollView style={{flex:1}}>
+             
       <Text
         style={{
           color: color.font,
@@ -47,6 +51,8 @@ export default function Login() {
         onChange={setPassword}
       />
       <Button title="Login" onPress={() => console.log("Login")} />
+    </ScrollView>
+    <KeyboardSpacer/>
     </View>
   );
 }
