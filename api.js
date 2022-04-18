@@ -65,7 +65,3 @@ export async function deleteUser(token) {
       });
   return res.data;
 }
-
-
-
-}
