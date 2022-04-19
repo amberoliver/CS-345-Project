@@ -2,22 +2,11 @@ import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { CompositeScreenProps } from "@react-navigation/native";
 import { StackScreenProps } from "@react-navigation/stack";
 import React from "react";
-import {
-  KeyboardAvoidingView,
-  Platform,
-  ScrollView,
-  Text,
-  View,
-} from "react-native";
 import { loginUser, registerUser } from "../../api";
-import Input from "../../components/Input";
 import { RootStackParamList } from "../../navigation/Root";
 import { TabParamList } from "../../navigation/Tabs";
 import { login } from "../../state/authSlice";
 import { useAppDispatch } from "../../state/hooks";
-import useColor from "../../useColor";
-import KeyboardSpacer from "react-native-keyboard-spacer";
-import { validate as isValidEmail } from "email-validator";
 
 type Props = CompositeScreenProps<
   StackScreenProps<RootStackParamList, "Register">,
@@ -25,15 +14,12 @@ type Props = CompositeScreenProps<
 >;
 
 import TextField from "../../components/form/TextField";
-import SelectField from "../../components/form/SelectField";
-import CurrencyInput from "react-native-currency-input";
-import CurrencyField from "../../components/form/CurrencyField";
 import Button from "../../components/Button";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import DateField from "../../components/form/DateField";
 import { FormProvider, useForm } from "react-hook-form";
+import KeyboardAvoidingScrollView from "../../components/KeyboardAvoidingScrollView";
 
 const schema = yup
   .object({
@@ -68,29 +54,25 @@ export default function Register({ navigation }: Props) {
   };
 
   return (
-    <View style={{ flex: 1 }}>
-      <ScrollView style={{ flex: 1 }}>
-        <FormProvider {...methods}>
-          <TextField
-            name="email"
-            label="Email"
-            placeholder="johndoe@gmail.com"
-            keyboardType="email-address"
-            autoCapitalize="none"
-          />
+    <KeyboardAvoidingScrollView>
+      <FormProvider {...methods}>
+        <TextField
+          name="email"
+          label="Email"
+          placeholder="johndoe@gmail.com"
+          keyboardType="email-address"
+          autoCapitalize="none"
+        />
 
-          <TextField
-            name="password"
-            label="Password"
-            placeholder="••••••"
-            autoCapitalize="none"
-            secureTextEntry
-          />
-
-          <Button title="Login" onPress={handleSubmit(onSubmit)} />
-        </FormProvider>
-      </ScrollView>
-      <KeyboardSpacer />
-    </View>
+        <TextField
+          name="password"
+          label="Password"
+          placeholder="••••••"
+          autoCapitalize="none"
+          secureTextEntry
+        />
+        <Button title="Login" onPress={handleSubmit(onSubmit)} />
+      </FormProvider>
+    </KeyboardAvoidingScrollView>
   );
 }

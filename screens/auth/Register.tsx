@@ -34,6 +34,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import DateField from "../../components/form/DateField";
 import { FormProvider, useForm } from "react-hook-form";
+import KeyboardAvoidingScrollView from "../../components/KeyboardAvoidingScrollView";
 
 const schema = yup
   .object({
@@ -94,36 +95,33 @@ export default function Register({ navigation }: Props) {
   };
 
   return (
-    <View style={{ flex: 1 }}>
-      <ScrollView style={{ flex: 1 }}>
-        <FormProvider {...methods}>
-          <TextField name="name" label="Full Name" placeholder="John Doe" />
-          <TextField
-            name="email"
-            label="Email"
-            placeholder="johndoe@gmail.com"
-            keyboardType="email-address"
-            autoCapitalize="none"
-          />
-          <TextField name="phone" label="Phone #" placeholder="5849489985" />
-          <TextField
-            name="password"
-            label="Password"
-            placeholder="••••••"
-            autoCapitalize="none"
-            secureTextEntry
-          />
-          <TextField
-            name="confirmPassword"
-            autoCapitalize="none"
-            label="Confirm Pass."
-            placeholder="•••••••"
-            secureTextEntry
-          />
-          <Button title="Register" onPress={handleSubmit(onSubmit)} />
-        </FormProvider>
-      </ScrollView>
-      <KeyboardSpacer />
-    </View>
+    <KeyboardAvoidingScrollView>
+      <FormProvider {...methods}>
+        <TextField name="name" label="Full Name" placeholder="John Doe" />
+        <TextField
+          name="email"
+          label="Email"
+          placeholder="johndoe@gmail.com"
+          keyboardType="email-address"
+          autoCapitalize="none"
+        />
+        <TextField name="phone" label="Phone #" placeholder="5849489985" />
+        <TextField
+          name="password"
+          label="Password"
+          placeholder="••••••"
+          autoCapitalize="none"
+          secureTextEntry
+        />
+        <TextField
+          name="confirmPassword"
+          autoCapitalize="none"
+          label="Confirm Pass."
+          placeholder="•••••••"
+          secureTextEntry
+        />
+        <Button title="Register" onPress={handleSubmit(onSubmit)} />
+      </FormProvider>
+    </KeyboardAvoidingScrollView>
   );
 }
