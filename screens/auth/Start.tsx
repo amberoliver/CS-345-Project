@@ -16,16 +16,6 @@ export default function Start({ navigation }: Props) {
   const color = useColor();
   return (
     <View style={{ flex: 1, justifyContent: "center" }}>
-      <Text
-        style={{
-          color: color.font,
-          fontSize: 42,
-          textAlign: "center",
-          padding: 20,
-        }}
-      >
-        Welcome to Craving Savings
-      </Text>
       <Button title="Login" onPress={() => navigation.push("Login")} />
       <Button title="Register" onPress={() => navigation.push("Register")} />
     </View>

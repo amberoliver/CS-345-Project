@@ -11,8 +11,10 @@ export default function useColor() {
           font: "white",
           border: "#1D1D20",
           accent: "#0B84FF",
+          placeholder: "gray",
         },
         light: {
+          placeholder: "gray",
           card: "white",
           font: "black",
           border: "#F3F3F3",

@@ -16,11 +16,15 @@ export async function registerUser(name, phone, email, password) {
 //and presented when accessing user data
 
 export async function loginUser(email, password) {
-  let res = await axios.post("https://cs-backend.herokuapp.com/login", {
-    email,
-    password,
-  });
-  return res.headers["auth-token"];
+  try {
+    let res = await axios.post("https://cs-backend.herokuapp.com/login", {
+      email,
+      password,
+    });
+    return res.headers["auth-token"];
+  } catch (e) {
+    console.log(e);
+  }
   // .get("auth-token")
 }
 
@@ -48,20 +52,15 @@ export function getUserData(token) {
 
 //this will be for updating any of the users info, including name email phone password and category information
 
-export async function updateUser(token, data) {
-
-    
-
-}
+export async function updateUser(token, data) {}
 
 //deletes user by their login token
 
 export async function deleteUser(token) {
-
-    let res = await axios.post({
-        method: 'DELETE',
-        url: 'https://cs-backend.herokuapp.com/data',
-        headers: {'auth-token': token}
-      });
+  let res = await axios.post({
+    method: "DELETE",
+    url: "https://cs-backend.herokuapp.com/data",
+    headers: { "auth-token": token },
+  });
   return res.data;
 }

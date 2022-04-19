@@ -10,7 +10,10 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@emotion/native": "^11.0.0",
+    "@emotion/react": "^11.9.0",
     "@expo/vector-icons": "^12.0.0",
+    "@hookform/resolvers": "^2.8.8",
     "@react-native-community/datetimepicker": "^4.0.0",
     "@react-native-firebase/app": "^14.7.0",
     "@react-native-masked-view/masked-view": "0.2.6",
@@ -30,6 +33,7 @@
     "node-fetch": "^3.2.3",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-hook-form": "^7.30.0",
     "react-native": "0.64.3",
     "react-native-appearance": "~0.3.3",
     "react-native-chart-kit": "^6.12.0",
@@ -42,7 +46,8 @@
     "react-native-screens": "~3.10.1",
     "react-native-svg": "12.1.1",
     "react-native-web": "0.17.1",
-    "react-redux": "^7.2.8"
+    "react-redux": "^7.2.8",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

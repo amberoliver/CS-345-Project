@@ -1,40 +1,7 @@
 {
-  "type": "default",
-  "status": 400,
-  "ok": false,
-  "statusText": "",
-  "headers": {
-    "map": {
-      "server": "Cowboy",
-      "connection": "keep-alive",
-      "content-type": "text/html; charset=utf-8",
-      "etag": "W/\"14-DxBbjJ2ZS7Qtwh+cvHGlQn/xjRY\"",
-      "x-powered-by": "Express",
-      "via": "1.1 vegur",
-      "date": "Wed, 13 Apr 2022 18:58:53 GMT",
-      "content-length": "20"
-    }
-  },
-  "url": "https://cs-backend.herokuapp.com/register",
-  "bodyUsed": false,
-  "_bodyInit": {
-    "_data": {
-      "size": 20,
-      "offset": 0,
-      "blobId": "C2FA764A-7F4C-487D-8880-B7D4C9D3B555",
-      "type": "text/html",
-      "name": "register.html",
-      "__collector": {}
-    }
-  },
-  "_bodyBlob": {
-    "_data": {
-      "size": 20,
-      "offset": 0,
-      "blobId": "C2FA764A-7F4C-487D-8880-B7D4C9D3B555",
-      "type": "text/html",
-      "name": "register.html",
-      "__collector": {}
-    }
-  }
+  "confirmPassword": "Password1!",
+  "email": "martin22@gmail.com",
+  "name": "Martin Nester",
+  "password": "Password1!",
+  "phone": "2222222222"
 }
