@@ -5,7 +5,7 @@ import {
   UseControllerProps,
   useFormContext,
 } from "react-hook-form";
-import { Keyboard, TextInputProps } from "react-native";
+import { Keyboard, ReturnKeyType, TextInputProps } from "react-native";
 import Labeled from "./Labeled";
 
 const StyledInput = styled.TextInput`
@@ -37,6 +37,13 @@ export default function TextField({
     field: { onChange, onBlur, value, name, ref },
     fieldState: { error },
   } = useController(props);
+  function getReturnKeyType() {
+    let type: ReturnKeyType = onLast ? "go" : "next";
+    if (props.keyboardType === "number-pad") {
+      type = "done";
+    }
+    return type;
+  }
   return (
     <Labeled label={label} error={error?.message}>
       <StyledInput
@@ -47,7 +54,7 @@ export default function TextField({
         ref={ref}
         placeholderTextColor={theme.color.placeholder}
         blurOnSubmit={false}
-        returnKeyType={onLast ? "go" : "next"}
+        returnKeyType={getReturnKeyType()}
         returnKeyLabel={onLastText}
         onSubmitEditing={() => {
           let all = Object.entries(watch());

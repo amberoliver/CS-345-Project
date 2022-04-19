@@ -68,6 +68,7 @@ export default function Register({ navigation }: Props) {
           placeholder="••••••"
           autoCapitalize="none"
           secureTextEntry
+          onLast={handleSubmit(onSubmit)}
         />
         <Button title="Login" onPress={handleSubmit(onSubmit)} />
       </FormProvider>

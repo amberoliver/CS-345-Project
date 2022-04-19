@@ -4,6 +4,7 @@ import { CompositeScreenProps } from "@react-navigation/native";
 import { StackScreenProps } from "@react-navigation/stack";
 import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
+import { TextInput } from "react-native-gesture-handler";
 import * as yup from "yup";
 import { loginUser, registerUser } from "../../api";
 import Button from "../../components/Button";
@@ -88,7 +89,12 @@ export default function Register({ navigation }: Props) {
           keyboardType="email-address"
           autoCapitalize="none"
         />
-        <TextField name="phone" label="Phone #" placeholder="5849489985" />
+        <TextField
+          name="phone"
+          label="Phone #"
+          placeholder="5849489985"
+          keyboardType="number-pad"
+        />
         <TextField
           name="password"
           label="Password"
@@ -96,6 +102,7 @@ export default function Register({ navigation }: Props) {
           autoCapitalize="none"
           secureTextEntry
         />
+        <TextInput style={{ height: 0 }} />
         <TextField
           name="confirmPassword"
           autoCapitalize="none"
