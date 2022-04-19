@@ -111,12 +111,14 @@ export default function Register({ navigation }: Props) {
             label="Password"
             placeholder="••••••"
             autoCapitalize="none"
+            secureTextEntry
           />
           <TextField
             name="confirmPassword"
             autoCapitalize="none"
             label="Confirm Pass."
             placeholder="•••••••"
+            secureTextEntry
           />
           <Button title="Register" onPress={handleSubmit(onSubmit)} />
         </FormProvider>
