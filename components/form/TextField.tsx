@@ -1,7 +1,11 @@
 import styled from "@emotion/native";
 import { useTheme } from "@emotion/react";
-import { useController, UseControllerProps } from "react-hook-form";
-import { TextInputProps } from "react-native";
+import {
+  useController,
+  UseControllerProps,
+  useFormContext,
+} from "react-hook-form";
+import { Keyboard, TextInputProps } from "react-native";
 import Labeled from "./Labeled";
 
 const StyledInput = styled.TextInput`
@@ -16,14 +20,19 @@ interface TextFieldProps
   extends UseControllerProps,
     Omit<TextInputProps, "defaultValue"> {
   label: string;
+  onLast?: () => void;
+  onLastText?: string;
 }
 
 export default function TextField({
   placeholder,
   label,
+  onLast,
+  onLastText,
   ...props
 }: TextFieldProps) {
   const theme = useTheme();
+  const { setFocus, watch } = useFormContext();
   const {
     field: { onChange, onBlur, value, name, ref },
     fieldState: { error },
@@ -31,13 +40,25 @@ export default function TextField({
   return (
     <Labeled label={label} error={error?.message}>
       <StyledInput
-        onChangeText={onChange} // send value to hook form
-        onBlur={onBlur} // notify when input is touched/blur
-        value={value} // input value
+        onChangeText={onChange}
+        onBlur={onBlur}
+        value={value}
         placeholder={placeholder}
-        ref={ref} // send input ref, so we can focus on input when error appear
-        {...props}
+        ref={ref}
         placeholderTextColor={theme.color.placeholder}
+        blurOnSubmit={false}
+        returnKeyType={onLast ? "go" : "next"}
+        returnKeyLabel={onLastText}
+        onSubmitEditing={() => {
+          let all = Object.entries(watch());
+          let index = all.findIndex(([key]) => key == name);
+          if (index < all.length - 1) setFocus(all[index + 1][0]);
+          else {
+            if (onLast) onLast();
+            Keyboard.dismiss();
+          }
+        }}
+        {...props}
       />
     </Labeled>
   );

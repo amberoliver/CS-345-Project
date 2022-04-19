@@ -102,6 +102,8 @@ export default function Register({ navigation }: Props) {
           label="Confirm Pass."
           placeholder="•••••••"
           secureTextEntry
+          onLast={handleSubmit(onSubmit)}
+          onLastText="Register"
         />
         <Button title="Register" onPress={handleSubmit(onSubmit)} />
       </FormProvider>
