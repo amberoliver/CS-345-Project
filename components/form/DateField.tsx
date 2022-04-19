@@ -23,7 +23,7 @@ export default function DateField({ label, ...props }: DateFieldProps) {
   };
 
   const handleConfirm = (date: Date) => {
-    onChange(date);
+    onChange(date.getTime());
     hideDatePicker();
   };
   return (
