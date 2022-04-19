@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { RootState } from "./store";
 export type Category = {
   name: string;
-  amount: number;
+  amount: number | null;
   id: string;
   spent: number;
 };
@@ -23,13 +24,23 @@ export const budgetSlice = createSlice({
       let index = budget.findIndex((e) => e.id === payload.id);
       budget[index] = payload;
     },
-    remove: (budget, { payload }: { payload: Category }) => {
-      let index = budget.findIndex((e) => e.id === payload.id);
+    remove: (budget, { payload: id }: { payload: string }) => {
+      let index = budget.findIndex((e) => e.id === id);
       budget.splice(index, 1);
     },
   },
 });
 
+export const selectCategory = (id: string) => (state: RootState) => {
+  return (
+    state.budget.find((category) => category.id == id) || {
+      id: new Date().getTime() + "",
+      name: "",
+      amount: null,
+      spent: 0,
+    }
+  );
+};
 // Action creators are generated for each case reducer function
 export const { create, addExpense, update, remove } = budgetSlice.actions;
 

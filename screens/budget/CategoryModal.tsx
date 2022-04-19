@@ -1,64 +1,61 @@
+import { yupResolver } from "@hookform/resolvers/yup";
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { CompositeScreenProps } from "@react-navigation/native";
 import { StackScreenProps } from "@react-navigation/stack";
 import React from "react";
-import { Alert, Button, Text, View } from "react-native";
-import CurrencyInput from "react-native-currency-input";
+import { FormProvider, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
+import * as yup from "yup";
+import ConfirmButton from "../../components/ConfirmButton";
+import CurrencyField from "../../components/form/CurrencyField";
+import TextField from "../../components/form/TextField";
 import HeaderButton from "../../components/HeaderButton";
-import Input from "../../components/Input";
+import KeyboardAvoidingScrollView from "../../components/KeyboardAvoidingScrollView";
 import { RootStackParamList } from "../../navigation/Root";
 import { TabParamList } from "../../navigation/Tabs";
-import { Category, create, remove, update } from "../../state/budgetSlice";
+import {
+  Category,
+  create,
+  remove,
+  selectCategory,
+  update,
+} from "../../state/budgetSlice";
 import { useAppSelector } from "../../state/hooks";
+
 type Props = CompositeScreenProps<
   StackScreenProps<RootStackParamList, "BudgetModal">,
   BottomTabScreenProps<TabParamList>
 >;
+
+const schema = yup
+  .object({
+    name: yup.string().required(),
+    amount: yup
+      .number()
+      .min(1, "Amount must be atleast $1")
+      .required("Amount is required.")
+      .nullable(),
+  })
+  .required();
+
 export default function EditCategory({ navigation, route }: Props) {
   const { id } = route.params;
   const dispatch = useDispatch();
-  const defaultCategory: Category = {
-    id: new Date().getTime() + "",
-    name: "",
-    amount: 0,
-    spent: 0,
-  };
-  const category = useAppSelector(
-    (state) =>
-      state.budget.find((category) => category.id == id) || defaultCategory
-  );
 
-  const [amount, setCategoryAmount] = React.useState(category.amount); // can also be null
-  const [name, setCategoryName] = React.useState(category.name);
-  const [error, setError] = React.useState(false);
-  function handleSubmit() {
-    if (name == "" || amount < 1) {
-      setError(true);
-      return;
-    }
-    if (id == "") {
-      dispatch(
-        create({
-          amount,
-          name,
-          id: new Date().getTime() + "",
-          spent: 0,
-        })
-      );
-    } else {
-      dispatch(update({ amount, name, id, spent: category.spent }));
-    }
+  const methods = useForm<Category>({
+    resolver: yupResolver(schema),
+    defaultValues: useAppSelector(selectCategory(id)),
+  });
+  const { handleSubmit } = methods;
+
+  function onSubmit(data: Category) {
+    if (id == "") dispatch(create(data));
+    else dispatch(update(data));
     navigation.pop();
   }
-  function confirmDelete() {
-    Alert.alert("Confirm Deletion", undefined, [
-      { text: "Cancel" },
-      { text: "Delete", style: "destructive", onPress: handleDelete },
-    ]);
-  }
+
   function handleDelete() {
-    dispatch(remove({ amount, name, id, spent: category.spent }));
+    dispatch(remove(id));
     navigation.pop();
   }
 
@@ -69,38 +66,18 @@ export default function EditCategory({ navigation, route }: Props) {
         <HeaderButton onPress={() => navigation.pop()} title="Cancel" />
       ),
       headerRight: () => (
-        <HeaderButton onPress={() => handleSubmit()} title="Save" />
+        <HeaderButton onPress={handleSubmit(onSubmit)} title="Save" />
       ),
     });
-  }, [navigation, amount, name]);
+  }, [navigation]);
 
   return (
-    <View>
-      <Input
-        title="Name"
-        placeholder="Rent"
-        onChangeText={setCategoryName}
-        value={name}
-      />
-      <Input
-        title="Amount"
-        inputComponent={CurrencyInput}
-        value={amount}
-        onChangeValue={setCategoryAmount}
-        prefix="$"
-        delimiter=","
-        separator="."
-        precision={2}
-        placeholder="$0.00"
-      />
-      {error && (
-        <Text style={{ color: "red", fontSize: 20, textAlign: "center" }}>
-          Amount must be greater than $1, and there must be a name.
-        </Text>
-      )}
-      {id !== "" && (
-        <Button onPress={confirmDelete} title="Delete Category" color="red" />
-      )}
-    </View>
+    <KeyboardAvoidingScrollView>
+      <FormProvider {...methods}>
+        <TextField name="name" label="Name" placeholder="Food" />
+        <CurrencyField name="amount" label="Amount" />
+        <ConfirmButton title="Delete" onPress={handleDelete} />
+      </FormProvider>
+    </KeyboardAvoidingScrollView>
   );
 }
