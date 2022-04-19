@@ -1,7 +1,4 @@
-import { FlatList } from "react-native-gesture-handler";
-import FAB from "../../components/FAB";
-import Category, { CategoryProps } from "./Category";
-import { RootStackParamList } from "../../navigation/Root";
+import SegmentedControl from "@react-native-segmented-control/segmented-control";
 import {
   BottomTabNavigationProp,
   BottomTabScreenProps,
@@ -11,10 +8,13 @@ import {
   CompositeScreenProps,
 } from "@react-navigation/native";
 import { StackNavigationProp, StackScreenProps } from "@react-navigation/stack";
-import { TabParamList } from "../../navigation/Tabs";
-import { useSelector } from "react-redux";
-import SegmentedControl from "@react-native-segmented-control/segmented-control";
 import React from "react";
+import { FlatList } from "react-native-gesture-handler";
+import { useSelector } from "react-redux";
+import FAB from "../../components/FAB";
+import { RootStackParamList } from "../../navigation/Root";
+import { TabParamList } from "../../navigation/Tabs";
+import Category from "./Category";
 
 type Props = CompositeScreenProps<
   StackScreenProps<RootStackParamList, "Tabs">,

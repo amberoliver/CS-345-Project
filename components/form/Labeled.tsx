@@ -1,6 +1,6 @@
 import styled from "@emotion/native";
-import { Children, ReactChildren, ReactNode } from "react";
-import { Text, View } from "react-native";
+import { ReactNode } from "react";
+import { View } from "react-native";
 
 const Container = styled.Pressable<{ error: boolean }>`
   border-bottom-width: 2px;

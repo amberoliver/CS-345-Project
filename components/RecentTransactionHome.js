@@ -1,6 +1,5 @@
+import { Text, View } from "react-native";
 import Card from "./Card";
-import { Text } from "react-native";
-import { View } from "react-native";
 
 export function RecentTransactionHome() {
   return (

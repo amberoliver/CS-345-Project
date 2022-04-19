@@ -1,6 +1,6 @@
-import { View, Text } from "react-native";
-import Card from "../components/Card";
+import { View } from "react-native";
 import Button from "../components/Button";
+import Category from "../components/Category";
 
 const mockCategories = [
   { name: "Food", remaining: 200, total: 300, color: "#6B7AFF" },
@@ -8,7 +8,6 @@ const mockCategories = [
   { name: "Entertainment", remaining: 50, total: 50, color: "#6BFF8C" },
   { name: "Transportation", remaining: 40, total: 70, color: "#FF6B6B" },
 ];
-import Category from "../components/Category";
 export default function Categories() {
   return (
     <View
@@ -24,8 +23,13 @@ export default function Categories() {
           <Category {...cat} />
         </View>
       ))}
-      <View style = {{width: "100%", flexDirection: "column", display: "block"}}>
-      <Button title="Add Category" onPress={() => console.log("button pressed")} />
+      <View
+        style={{ width: "100%", flexDirection: "column", display: "block" }}
+      >
+        <Button
+          title="Add Category"
+          onPress={() => console.log("button pressed")}
+        />
       </View>
     </View>
   );

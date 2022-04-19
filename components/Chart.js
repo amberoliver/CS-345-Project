@@ -1,10 +1,8 @@
-import { Text } from "react-native";
-import { View } from "react-native";
-import { FlatGrid } from "react-native-super-grid";
+import { Text, View } from "react-native";
+import Svg, { Path } from "react-native-svg";
 import Card from "./Card";
 import CategoryTag from "./CategoryTag";
 
-import Svg, { Path } from "react-native-svg";
 export default function Chart({ categories }) {
   const total = categories.reduce((prev, curr) => {
     return prev + curr.total;

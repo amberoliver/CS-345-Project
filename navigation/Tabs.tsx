@@ -1,11 +1,10 @@
+import { Entypo } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Graphs from "../pages/Graphs";
+import Settings from "../pages/Settings";
 import BudgetScreen from "../screens/budget/Budget";
 import ExpensesScreen from "../screens/expenses/Expenses";
 
-import { Entypo } from "@expo/vector-icons";
-import { RootStackParamList } from "./Root";
-import Settings from "../pages/Settings";
-import Graphs from "../pages/Graphs";
 const Tab = createBottomTabNavigator<TabParamList>();
 
 export type TabParamList = {

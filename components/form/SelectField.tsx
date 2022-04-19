@@ -1,8 +1,6 @@
-import styled from "@emotion/native";
 import { useMemo } from "react";
 import { useController, UseControllerProps } from "react-hook-form";
 import { StyleSheet } from "react-native";
-
 import RNPickerSelect from "react-native-picker-select";
 import Labeled from "./Labeled";
 

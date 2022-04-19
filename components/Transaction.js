@@ -1,8 +1,8 @@
-import CategoryTag from "./CategoryTag";
-import { View, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-
 import moment from "moment";
+import { Text, View } from "react-native";
+import CategoryTag from "./CategoryTag";
+
 export default function Transaction({ date, amount, name, category }) {
   return (
     <View

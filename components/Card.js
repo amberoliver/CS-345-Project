@@ -1,4 +1,4 @@
-import { View, Pressable } from "react-native";
+import { Pressable, View } from "react-native";
 import useColor from "../useColor";
 export default function Card({
   children,

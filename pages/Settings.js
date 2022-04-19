@@ -1,11 +1,9 @@
-import { View, Text, TextInput } from "react-native";
-import Card from "../components/Card";
-import Transaction from "../components/Transaction";
-import Button from "../components/Button";
-import useColor from "../useColor";
-import { useEffect, useState } from "react";
-
 import { validate as isValidEmail } from "email-validator";
+import { useEffect, useState } from "react";
+import { Text, TextInput, View } from "react-native";
+import Button from "../components/Button";
+import Card from "../components/Card";
+import useColor from "../useColor";
 
 export default function Settings() {
   function validateEmail(email) {

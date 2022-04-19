@@ -1,6 +1,6 @@
+import type { TextInputProps } from "react-native";
 import { Text, View } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
-import type { TextInputProps } from "react-native";
 import useColor from "../useColor";
 export interface InputProps extends TextInputProps {
   title: string;

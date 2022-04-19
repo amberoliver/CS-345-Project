@@ -1,6 +1,6 @@
 import moment from "moment";
 import React from "react";
-import { Button, Pressable, Text, View } from "react-native";
+import { Pressable, Text } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import useColor from "../useColor";
 type Props = {

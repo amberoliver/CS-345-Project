@@ -1,8 +1,14 @@
+import { yupResolver } from "@hookform/resolvers/yup";
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { CompositeScreenProps } from "@react-navigation/native";
 import { StackScreenProps } from "@react-navigation/stack";
 import React from "react";
-import { loginUser, registerUser } from "../../api";
+import { FormProvider, useForm } from "react-hook-form";
+import * as yup from "yup";
+import { loginUser } from "../../api";
+import Button from "../../components/Button";
+import TextField from "../../components/form/TextField";
+import KeyboardAvoidingScrollView from "../../components/KeyboardAvoidingScrollView";
 import { RootStackParamList } from "../../navigation/Root";
 import { TabParamList } from "../../navigation/Tabs";
 import { login } from "../../state/authSlice";
@@ -12,14 +18,6 @@ type Props = CompositeScreenProps<
   StackScreenProps<RootStackParamList, "Register">,
   BottomTabScreenProps<TabParamList>
 >;
-
-import TextField from "../../components/form/TextField";
-import Button from "../../components/Button";
-
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { FormProvider, useForm } from "react-hook-form";
-import KeyboardAvoidingScrollView from "../../components/KeyboardAvoidingScrollView";
 
 const schema = yup
   .object({

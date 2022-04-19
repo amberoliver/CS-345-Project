@@ -1,37 +1,14 @@
-import "react-native-gesture-handler";
-import Root from "../../navigation/Root";
-import { store } from "../../state/store";
-import { Provider } from "react-redux";
-import { NativeBaseProvider } from "native-base";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import React, { useContext, useMemo, useRef } from "react";
-import MyInput from "../Input";
-import {
-  ColorPropType,
-  ColorSchemeName,
-  Text,
-  TextInput,
-  TextInputProps,
-  useColorScheme,
-  View,
-} from "react-native";
-import {
-  FormProvider,
-  useForm,
-  useController,
-  ControllerProps,
-  UseControllerProps,
-} from "react-hook-form";
-import styled, { css } from "@emotion/native";
-import TextField from "./TextField";
-import SelectField from "./SelectField";
-import CurrencyInput from "react-native-currency-input";
-import CurrencyField from "./CurrencyField";
-import Button from "../Button";
-
 import { yupResolver } from "@hookform/resolvers/yup";
+import React from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import "react-native-gesture-handler";
+import { SafeAreaView } from "react-native-safe-area-context";
 import * as yup from "yup";
+import Button from "../Button";
+import CurrencyField from "./CurrencyField";
 import DateField from "./DateField";
+import SelectField from "./SelectField";
+import TextField from "./TextField";
 
 const schema = yup
   .object({

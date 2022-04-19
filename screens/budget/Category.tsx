@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import useColor from "../../useColor";
 import { BudgetNav } from "./Budget";

@@ -1,9 +1,7 @@
-import { ScrollView } from "react-native-gesture-handler";
+import { Dimensions, FlatList, Text, View } from "react-native";
 import { PieChart } from "react-native-chart-kit";
-import { Dimensions, FlatList, View } from "react-native";
-import Card from "../components/Card";
-import { Text } from "react-native";
 import { useSelector } from "react-redux";
+import Card from "../components/Card";
 import useColor from "../useColor";
 
 const chartConfig = {

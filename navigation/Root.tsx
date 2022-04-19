@@ -2,7 +2,6 @@ import {
   DarkTheme,
   DefaultTheme,
   NavigationContainer,
-  NavigatorScreenParams,
 } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { StatusBar } from "expo-status-bar";
@@ -12,7 +11,7 @@ import Register from "../screens/auth/Register";
 import Start from "../screens/auth/Start";
 import CategoryModal from "../screens/budget/CategoryModal";
 import ExpenseModal from "../screens/expenses/ExpenseModal";
-import Tabs, { TabParamList } from "./Tabs";
+import Tabs from "./Tabs";
 export type RootStackParamList = {
   Tabs: undefined;
   ExpenseModal: { id: string };

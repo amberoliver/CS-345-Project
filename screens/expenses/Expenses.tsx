@@ -3,19 +3,18 @@ import {
   BottomTabScreenProps,
 } from "@react-navigation/bottom-tabs";
 import {
-  CompositeScreenProps,
   CompositeNavigationProp,
+  CompositeScreenProps,
 } from "@react-navigation/native";
 import { StackNavigationProp, StackScreenProps } from "@react-navigation/stack";
-import { color } from "native-base/lib/typescript/theme/styled-system";
-import { ListRenderItemInfo, Text, View } from "react-native";
+import { Text } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import { useSelector } from "react-redux";
 import FAB from "../../components/FAB";
 import { RootStackParamList } from "../../navigation/Root";
 import { TabParamList } from "../../navigation/Tabs";
 import useColor from "../../useColor";
-import Expense, { ExpenseProps } from "./Expense";
+import Expense from "./Expense";
 type Props = CompositeScreenProps<
   StackScreenProps<RootStackParamList, "Tabs">,
   BottomTabScreenProps<TabParamList, "Expenses">

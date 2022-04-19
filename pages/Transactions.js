@@ -1,8 +1,6 @@
-import { View, Text } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import Card from "../components/Card";
 import Transaction from "../components/Transaction";
-import Button from "../components/Button";
-import { ScrollView } from "react-native-gesture-handler";
 
 const mockTransactions = [
   {

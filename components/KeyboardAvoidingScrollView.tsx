@@ -1,4 +1,4 @@
-import { ReactChildren, ReactNode } from "react";
+import { ReactNode } from "react";
 import { ScrollView, View } from "react-native";
 import KeyboardSpacer from "react-native-keyboard-spacer";
 

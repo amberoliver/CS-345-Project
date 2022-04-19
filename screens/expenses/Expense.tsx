@@ -2,9 +2,8 @@ import { useNavigation } from "@react-navigation/native";
 import moment from "moment";
 import { Text, View } from "react-native";
 import { TouchableHighlight } from "react-native-gesture-handler";
-import { useDispatch } from "react-redux";
-import { RootStackParamList } from "../../navigation/Root";
 import useColor from "../../useColor";
+import type { ExpensesNav } from "./Expenses";
 export type ExpenseProps = {
   name: string;
   cost: number;
@@ -12,7 +11,6 @@ export type ExpenseProps = {
   date: string;
   id: string;
 };
-import type { ExpensesNav } from "./Expenses";
 export default function Expense({
   name,
   cost,

@@ -1,7 +1,7 @@
-import { View, Text } from "react-native";
 import { Box, FormControl, Input, Select } from "native-base";
-import CurrencyInput from "react-native-currency-input";
 import React from "react";
+import { View } from "react-native";
+import CurrencyInput from "react-native-currency-input";
 
 export default function TransactionEdit() {
   const [value, setValue] = React.useState(2310.458); // can also be null

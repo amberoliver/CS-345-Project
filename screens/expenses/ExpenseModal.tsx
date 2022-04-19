@@ -1,24 +1,21 @@
-import { Alert, Button, Text, View } from "react-native";
-import Input from "../../components/Input";
-import CurrencyInput from "react-native-currency-input";
-import React, { useEffect } from "react";
-import DateInput from "../../components/DateInput";
-import { useDispatch, useSelector } from "react-redux";
-import { create, remove, update } from "../../state/expensesSlice";
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { CompositeScreenProps } from "@react-navigation/native";
 import { StackScreenProps } from "@react-navigation/stack";
+import React from "react";
+import { Alert, Button, Text, View } from "react-native";
+import CurrencyInput from "react-native-currency-input";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useDispatch, useSelector } from "react-redux";
+import DateInput from "../../components/DateInput";
+import HeaderButton from "../../components/HeaderButton";
+import Input from "../../components/Input";
+import Select from "../../components/Select";
 import { RootStackParamList } from "../../navigation/Root";
 import { TabParamList } from "../../navigation/Tabs";
-import moment from "moment";
 import { addExpense } from "../../state/budgetSlice";
-import Select from "../../components/Select";
-import { useAppSelector } from "../../state/hooks";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import type { ExpenseType } from "../../state/expensesSlice";
-import HeaderButton from "../../components/HeaderButton";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { KeyboardAvoidingView } from "native-base";
+import { create, remove, update } from "../../state/expensesSlice";
+import { useAppSelector } from "../../state/hooks";
 
 type Props = CompositeScreenProps<
   StackScreenProps<RootStackParamList, "ExpenseModal">,
