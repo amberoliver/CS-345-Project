@@ -1,10 +1,12 @@
 import { Pressable, Text } from "react-native";
+import useColor from "../useColor";
 export default function Button({ onPress, title, color = "blue" }) {
+  const c = useColor();
   return (
     <Pressable
       onPress={onPress}
       style={{
-        backgroundColor: color,
+        backgroundColor: c.accent,
         paddingHorizontal: 15,
         paddingVertical: 10,
         borderRadius: 8,

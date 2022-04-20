@@ -12,7 +12,10 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     login: (auth, { payload }: { payload: User }) => {
-      auth = payload;
+      auth.name = payload.name;
+      auth.phone = payload.phone;
+      auth.token = payload.token;
+      auth.email = payload.email;
     },
   },
 });

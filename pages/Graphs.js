@@ -2,6 +2,7 @@ import { Dimensions, FlatList, Text, View } from "react-native";
 import { PieChart } from "react-native-chart-kit";
 import { useSelector } from "react-redux";
 import Card from "../components/Card";
+import Message from "../components/Message";
 import useColor from "../useColor";
 
 const chartConfig = {
@@ -19,17 +20,20 @@ const screenWidth = Dimensions.get("window").width;
 
 export default function Graphs() {
   const budget = useSelector((state) => state.budget);
-  return (
+  return budget.length > 0 ? (
     <FlatList
       data={budget}
       renderItem={({ item }) => <Graph {...item} />}
       keyExtractor={(item) => item.id}
     />
+  ) : (
+    <Message>Create your budget to see graphs.</Message>
   );
 }
 
 function Graph({ amount, spent, name }) {
   const color = useColor();
+
   return (
     <Card margin>
       <Text

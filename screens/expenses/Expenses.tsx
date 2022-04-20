@@ -7,10 +7,10 @@ import {
   CompositeScreenProps,
 } from "@react-navigation/native";
 import { StackNavigationProp, StackScreenProps } from "@react-navigation/stack";
-import { Text } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import { useSelector } from "react-redux";
 import FAB from "../../components/FAB";
+import Message from "../../components/Message";
 import { RootStackParamList } from "../../navigation/Root";
 import { TabParamList } from "../../navigation/Tabs";
 import useColor from "../../useColor";
@@ -46,6 +46,6 @@ export default function Expenses({ navigation }: Props) {
       </>
     );
   } else {
-    return <Text style={{ color: color.font }}>Please Create Your Budget</Text>;
+    return <Message>Create your budget before adding expenses.</Message>;
   }
 }

@@ -2,11 +2,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { CompositeScreenProps } from "@react-navigation/native";
 import { StackScreenProps } from "@react-navigation/stack";
+import axios from "axios";
 import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
+import { Alert } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import * as yup from "yup";
-import { loginUser, registerUser } from "../../api";
 import Button from "../../components/Button";
 import TextField from "../../components/form/TextField";
 import KeyboardAvoidingScrollView from "../../components/KeyboardAvoidingScrollView";
@@ -65,17 +66,24 @@ export default function Register({ navigation }: Props) {
   });
   const dispatch = useAppDispatch();
   const { handleSubmit } = methods;
-  const onSubmit = (data: TestForm) => {
-    console.log(data);
-    const { name, phone, email, password } = data;
-    registerUser(name, phone, email, password).then((res) => {
-      //console.log(JSON.stringify(res));
-      loginUser(email, password).then((token) => {
-        console.log(token);
-        dispatch(login({ email, token, phone, name }));
-        navigation.push("Tabs");
+  const onSubmit = (form: TestForm) => {
+    const { name, phone, email, password } = form;
+    axios
+      .post("https://cs-backend.herokuapp.com/register", {
+        name,
+        phone,
+        email,
+        password,
+      })
+      .then(({ data: { success, message, res } }) => {
+        console.log({ success, message, res });
+        if (success) {
+          dispatch(login({ token: res.token, name, phone, email }));
+          navigation.push("Tabs");
+        } else {
+          Alert.alert(message);
+        }
       });
-    });
   };
 
   return (

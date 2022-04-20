@@ -27,6 +27,15 @@ export const expensesSlice = createSlice({
       expenses.splice(index, 1);
       expenses.sort((a, b) => b.date - a.date);
     },
+    clearExpenses: (expenses) => {
+      expenses.length = 0;
+    },
+    setExpenses: (expenses, { payload }: { payload: ExpenseType[] }) => {
+      expenses.length = 0;
+      for (let i of payload) {
+        expenses.push(i);
+      }
+    },
   },
 });
 
@@ -43,6 +52,7 @@ export const selectExpense = (id: string) => (state: RootState) => {
 };
 
 // Action creators are generated for each case reducer function
-export const { create, update, remove } = expensesSlice.actions;
+export const { create, update, remove, clearExpenses, setExpenses } =
+  expensesSlice.actions;
 
 export default expensesSlice.reducer;

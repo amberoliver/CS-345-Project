@@ -9,5 +9,5 @@ export default function ConfirmButton({ onPress, title, ...rest }: Props) {
       { text: title, style: "destructive", onPress: () => onPress(e) },
     ]);
   }
-  return <Button onPress={handlePress} title={title} {...rest} />;
+  return <Button onPress={handlePress} color="red" title={title} {...rest} />;
 }
