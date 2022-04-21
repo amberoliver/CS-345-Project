@@ -3,12 +3,14 @@ import React from "react";
 import { useController, UseControllerProps } from "react-hook-form";
 import { Text } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import useColor from "../../useColor";
 import Labeled from "./Labeled";
 interface DateFieldProps extends UseControllerProps {
   label: string;
 }
 export default function DateField({ label, ...props }: DateFieldProps) {
   const [isDatePickerVisible, setDatePickerVisibility] = React.useState(false);
+  const color = useColor();
   const {
     field: { onChange, value },
     fieldState: { error },
@@ -34,7 +36,7 @@ export default function DateField({ label, ...props }: DateFieldProps) {
           padding: 15,
           flex: 1,
           textAlign: "right",
-          color: "blue",
+          color: color.accent,
         }}
       >
         {moment(value).format("MMMM Do, h:mm a")}

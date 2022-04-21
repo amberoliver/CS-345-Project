@@ -1,3 +1,4 @@
+import { useTheme } from "@emotion/react";
 import { useMemo } from "react";
 import { useController, UseControllerProps } from "react-hook-form";
 import { StyleSheet } from "react-native";
@@ -15,6 +16,7 @@ export default function SelectField({
   items,
   ...props
 }: SelectFieldProps) {
+  const { color } = useTheme();
   const {
     field: { onChange, onBlur, value, name, ref },
 
@@ -27,17 +29,17 @@ export default function SelectField({
         inputIOS: {
           fontSize: 20,
           padding: 15,
-          color: "blue",
+          color: color.accent,
           textAlign: "right",
         },
         inputAndroid: {
           fontSize: 20,
           padding: 15,
-          color: "blue",
+          color: color.accent,
           textAlign: "right",
         },
       }),
-    ["blue"]
+    [color]
   );
 
   return (
@@ -52,7 +54,6 @@ export default function SelectField({
         placeholder={{
           label: placeholder,
           value: null,
-          color: "#9EA0A4",
         }}
         items={items.map((item) => ({ ...item, key: item.value }))}
       />

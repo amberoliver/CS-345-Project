@@ -1,4 +1,5 @@
 import styled from "@emotion/native";
+import { useTheme } from "@emotion/react";
 import { useController, UseControllerProps } from "react-hook-form";
 import CurrencyInput from "react-native-currency-input";
 import Labeled from "./Labeled";
@@ -8,7 +9,7 @@ const StyledInput = styled(CurrencyInput)`
   padding: 15px;
   padding-left: 0;
   text-align: right;
-  color: blue;
+  color: ${(props) => props.theme.color.accent};
   width: 100%;
 `;
 
@@ -21,12 +22,14 @@ export default function CurrencyField({ label, ...props }: CurrencyFieldProps) {
     field: { onChange, onBlur, value, name, ref },
     fieldState: { error },
   } = useController(props);
+  const { color } = useTheme();
   return (
     <Labeled label={label} error={error?.message}>
       <StyledInput
         value={value}
         onChangeValue={onChange}
         prefix="$"
+        placeholderTextColor={color.placeholder}
         delimiter=","
         separator="."
         onBlur={onBlur}
