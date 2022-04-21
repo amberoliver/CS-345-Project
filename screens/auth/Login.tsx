@@ -3,7 +3,7 @@ import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { CompositeScreenProps } from "@react-navigation/native";
 import { StackScreenProps } from "@react-navigation/stack";
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { Alert } from "react-native";
 import * as yup from "yup";
@@ -38,6 +38,7 @@ interface TestForm {
 }
 
 export default function Register({ navigation }: Props) {
+  const [loading, setLoading] = useState(false);
   const methods = useForm<TestForm>({
     resolver: yupResolver(schema),
   });
@@ -45,30 +46,34 @@ export default function Register({ navigation }: Props) {
   const { handleSubmit } = methods;
   const onSubmit = (form: TestForm) => {
     const { email, password } = form;
-    axios
-      .post("https://cs-backend.herokuapp.com/login", {
-        email,
-        password,
-      })
-      .then(({ data: { success, message, res } }) => {
-        console.log({ success, message, res });
-        if (success) {
-          axios
-            .get("https://cs-backend.herokuapp.com/data", {
-              headers: { "auth-token": res.token },
-            })
-            .then(({ data }) => {
-              console.log(data);
-              const { budget, expenses }: any = JSON.parse(data.data);
-              dispatch(login({ token: res.token, ...data }));
-              dispatch(setBudget(budget));
-              dispatch(setExpenses(expenses));
-              navigation.push("Tabs");
-            });
-        } else {
-          Alert.alert(message);
-        }
-      });
+    if (!loading) {
+      setLoading(true);
+      axios
+        .post("https://cs-backend.herokuapp.com/login", {
+          email,
+          password,
+        })
+        .then(({ data: { success, message, res } }) => {
+          console.log({ success, message, res });
+          if (success) {
+            axios
+              .get("https://cs-backend.herokuapp.com/data", {
+                headers: { "auth-token": res.token },
+              })
+              .then(({ data }) => {
+                console.log(data);
+                const { budget, expenses }: any = JSON.parse(data.data);
+                dispatch(login({ token: res.token, ...data }));
+                dispatch(setBudget(budget));
+                dispatch(setExpenses(expenses));
+                navigation.push("Tabs");
+              });
+          } else {
+            Alert.alert(message);
+          }
+          setLoading(false);
+        });
+    }
   };
 
   return (
@@ -90,7 +95,11 @@ export default function Register({ navigation }: Props) {
           secureTextEntry
           onLast={handleSubmit(onSubmit)}
         />
-        <Button title="Login" onPress={handleSubmit(onSubmit)} />
+        <Button
+          title="Login"
+          onPress={handleSubmit(onSubmit)}
+          loading={loading}
+        />
       </FormProvider>
     </KeyboardAvoidingScrollView>
   );

@@ -1,6 +1,11 @@
-import { Pressable, Text } from "react-native";
+import { ActivityIndicator, Pressable, Text } from "react-native";
 import useColor from "../useColor";
-export default function Button({ onPress, title, color = "blue" }) {
+export default function Button({
+  onPress,
+  title,
+  color = "blue",
+  loading = false,
+}) {
   const c = useColor();
   return (
     <Pressable
@@ -15,6 +20,8 @@ export default function Button({ onPress, title, color = "blue" }) {
         shadowOpacity: 0.2,
         shadowRadius: 2,
         shadowOffset: { width: 2, height: 2 },
+        flexDirection: "row",
+        justifyContent: "center",
       }}
     >
       <Text
@@ -27,6 +34,9 @@ export default function Button({ onPress, title, color = "blue" }) {
       >
         {title}
       </Text>
+      {loading && (
+        <ActivityIndicator style={{ marginLeft: 10 }} color="white" />
+      )}
     </Pressable>
   );
 }

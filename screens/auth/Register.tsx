@@ -3,7 +3,7 @@ import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { CompositeScreenProps } from "@react-navigation/native";
 import { StackScreenProps } from "@react-navigation/stack";
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { Alert } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
@@ -61,6 +61,7 @@ interface TestForm {
 }
 
 export default function Register({ navigation }: Props) {
+  const [loading, setLoading] = useState(false);
   const methods = useForm<TestForm>({
     resolver: yupResolver(schema),
   });
@@ -68,22 +69,26 @@ export default function Register({ navigation }: Props) {
   const { handleSubmit } = methods;
   const onSubmit = (form: TestForm) => {
     const { name, phone, email, password } = form;
-    axios
-      .post("https://cs-backend.herokuapp.com/register", {
-        name,
-        phone,
-        email,
-        password,
-      })
-      .then(({ data: { success, message, res } }) => {
-        console.log({ success, message, res });
-        if (success) {
-          dispatch(login({ token: res.token, name, phone, email }));
-          navigation.push("Tabs");
-        } else {
-          Alert.alert(message);
-        }
-      });
+    if (!loading) {
+      setLoading(true);
+      axios
+        .post("https://cs-backend.herokuapp.com/register", {
+          name,
+          phone,
+          email,
+          password,
+        })
+        .then(({ data: { success, message, res } }) => {
+          console.log({ success, message, res });
+          if (success) {
+            dispatch(login({ token: res.token, name, phone, email }));
+            navigation.push("Tabs");
+          } else {
+            Alert.alert(message);
+          }
+          setLoading(false);
+        });
+    }
   };
 
   return (
@@ -120,7 +125,11 @@ export default function Register({ navigation }: Props) {
           onLast={handleSubmit(onSubmit)}
           onLastText="Register"
         />
-        <Button title="Register" onPress={handleSubmit(onSubmit)} />
+        <Button
+          title="Register"
+          onPress={handleSubmit(onSubmit)}
+          loading={loading}
+        />
       </FormProvider>
     </KeyboardAvoidingScrollView>
   );
