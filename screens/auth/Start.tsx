@@ -18,6 +18,7 @@ export default function Start({ navigation }: Props) {
     <View style={{ flex: 1, justifyContent: "center" }}>
       <Button title="Login" onPress={() => navigation.push("Login")} />
       <Button title="Register" onPress={() => navigation.push("Register")} />
+      <Button title="Skip" onPress={() => navigation.push("Tabs")} />
     </View>
   );
 }

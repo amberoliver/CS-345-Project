@@ -48,32 +48,50 @@ export default function Settings({ navigation }) {
   const { name, email, phone } = state.auth;
   return (
     <KeyboardAvoidingScrollView>
-      <Text
-        style={{
-          fontSize: 20,
-          margin: 10,
-          fontWeight: "bold",
-          color: color.font,
-        }}
-      >
-        Account Info
-      </Text>
-      <Info title="Name" value={name} />
-      <Info title="Email" value={email} />
-      <Info title="Phone Number" value={phone} />
-      <Text
-        style={{
-          fontSize: 20,
-          margin: 10,
-          fontWeight: "bold",
-          color: color.font,
-        }}
-      >
-        Actions
-      </Text>
-      <Button title="Logout" onPress={handleLogout} />
-      <Button title="Delete Account" onPress={handleDelete} />
-      <Button title="Sync To Cloud" onPress={handleSync} />
+      {token ? (
+        <>
+          <Text
+            style={{
+              fontSize: 20,
+              margin: 10,
+              fontWeight: "bold",
+              color: color.font,
+            }}
+          >
+            Account Info
+          </Text>
+          <Info title="Name" value={name} />
+          <Info title="Email" value={email} />
+          <Info title="Phone Number" value={phone} />
+          <Text
+            style={{
+              fontSize: 20,
+              margin: 10,
+              fontWeight: "bold",
+              color: color.font,
+            }}
+          >
+            Actions
+          </Text>
+          <Button title="Logout" onPress={handleLogout} />
+          <Button title="Delete Account" onPress={handleDelete} />
+          <Button title="Sync To Cloud" onPress={handleSync} />
+        </>
+      ) : (
+        <>
+          <Text
+            style={{
+              fontSize: 20,
+              margin: 10,
+              fontWeight: "bold",
+              color: color.font,
+            }}
+          >
+            Actions
+          </Text>
+          <Button title="Use an Account" onPress={handleLogout} />
+        </>
+      )}
       <Button title="Start New Budget" onPress={resetApp} />
     </KeyboardAvoidingScrollView>
   );
