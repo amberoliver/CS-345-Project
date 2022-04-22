@@ -34,7 +34,7 @@ export default function BudgetScreen({ navigation }: Props) {
   const total = budget.reduce(
     (prev, curr) => ({
       spent: prev.spent + curr.spent,
-      amount: curr.amount || 0 + prev.amount,
+      amount: (curr.amount || 0) + prev.amount,
       name: prev.name,
     }),
     {
