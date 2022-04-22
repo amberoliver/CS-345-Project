@@ -37,6 +37,9 @@ export const budgetSlice = createSlice({
         budget.push(i);
       }
     },
+    clearBudgetExpenses: (budget) => {
+      budget.forEach((cat) => (cat.spent = 0));
+    },
   },
 });
 
@@ -51,7 +54,14 @@ export const selectCategory = (id: string) => (state: RootState) => {
   );
 };
 // Action creators are generated for each case reducer function
-export const { create, addExpense, update, remove, clearBudget, setBudget } =
-  budgetSlice.actions;
+export const {
+  create,
+  addExpense,
+  update,
+  remove,
+  clearBudget,
+  setBudget,
+  clearBudgetExpenses,
+} = budgetSlice.actions;
 
 export default budgetSlice.reducer;

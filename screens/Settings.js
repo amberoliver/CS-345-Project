@@ -4,7 +4,7 @@ import { Alert, Text } from "react-native";
 import Button from "../components/Button";
 import Card from "../components/Card";
 import KeyboardAvoidingScrollView from "../components/KeyboardAvoidingScrollView";
-import { clearBudget } from "../state/budgetSlice";
+import { clearBudget, clearBudgetExpenses } from "../state/budgetSlice";
 import { clearExpenses } from "../state/expensesSlice";
 import { useAppDispatch, useAppSelector } from "../state/hooks";
 import useColor from "../useColor";
@@ -52,6 +52,7 @@ export default function Settings({ navigation }) {
         text: "Clear Expenses",
         onPress: () => {
           dispatch(clearExpenses());
+          dispatch(clearBudgetExpenses());
           Alert.alert("Expenses Cleared");
         },
       },
