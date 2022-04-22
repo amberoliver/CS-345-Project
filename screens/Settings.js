@@ -45,6 +45,25 @@ export default function Settings({ navigation }) {
         handleLogout();
       });
   }
+  function handleNewBudget() {
+    Alert.alert(`Create a new Budget`, undefined, [
+      { text: "Cancel", style: "cancel" },
+      {
+        text: "Clear Expenses",
+        onPress: () => {
+          dispatch(clearExpenses());
+          Alert.alert("Expenses Cleared");
+        },
+      },
+      {
+        text: "Clear Budget & Expenses",
+        onPress: () => {
+          resetApp();
+          Alert.alert("Budget & Expenses Cleared");
+        },
+      },
+    ]);
+  }
   const { name, email, phone } = state.auth;
   return (
     <KeyboardAvoidingScrollView>
@@ -92,7 +111,7 @@ export default function Settings({ navigation }) {
           <Button title="Use an Account" onPress={handleLogout} />
         </>
       )}
-      <Button title="Start New Budget" onPress={resetApp} />
+      <Button title="Start New Budget" onPress={handleNewBudget} />
     </KeyboardAvoidingScrollView>
   );
 }

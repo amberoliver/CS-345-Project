@@ -9,7 +9,7 @@ export type CategoryProps = {
   spent: number;
   amount: number;
   showSpent: boolean;
-  id: string;
+  onPress?: () => void;
 };
 
 export default function Category({
@@ -17,7 +17,7 @@ export default function Category({
   spent,
   amount,
   showSpent,
-  id,
+  onPress,
 }: CategoryProps) {
   const navigation = useNavigation<BudgetNav>();
   let number = amount - spent;
@@ -27,7 +27,7 @@ export default function Category({
   let percent = (1 - number / amount) * 100;
   const color = useColor();
   return (
-    <TouchableHighlight onPress={() => navigation.push("BudgetModal", { id })}>
+    <TouchableHighlight onPress={onPress}>
       <View
         style={{
           padding: 15,
@@ -52,6 +52,7 @@ export default function Category({
             width: "100%",
             borderRadius: 2,
             alignItems: "flex-end",
+            overflow: "hidden",
           }}
         >
           <View
