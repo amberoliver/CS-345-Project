@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { ScrollView, View } from "react-native";
+import { Platform, ScrollView, View } from "react-native";
 import KeyboardSpacer from "react-native-keyboard-spacer";
 
 interface Props {
@@ -10,7 +10,7 @@ export default function KeyboardAvoidingScrollView({ children }: Props) {
   return (
     <View style={{ flex: 1 }}>
       <ScrollView style={{ flex: 1 }}>{children}</ScrollView>
-      <KeyboardSpacer />
+      {Platform.OS == "ios" && <KeyboardSpacer />}
     </View>
   );
 }
