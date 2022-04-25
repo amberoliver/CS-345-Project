@@ -94,7 +94,7 @@ export default function EditExpense({ navigation, route }: Props) {
   return (
     <KeyboardAvoidingScrollView>
       <FormProvider {...methods}>
-        <TextField name="name" label="Name" placeholder="Frech Fries" />
+        <TextField name="name" label="Name" placeholder="French Fries" />
         <CurrencyField name="cost" label="Cost" />
         <SelectField
           name="category"
