@@ -1,8 +1,8 @@
 import { Entypo } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Graphs from "../pages/Graphs";
 import BudgetScreen from "../screens/budget/Budget";
 import ExpensesScreen from "../screens/expenses/Expenses";
+import Graphs from "../screens/Graphs";
 import Settings from "../screens/Settings";
 
 const Tab = createBottomTabNavigator<TabParamList>();
